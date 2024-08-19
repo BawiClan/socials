@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bawi Agario Clan - Level Up Role Info</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #1a1a1a;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        nav {
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(38, 38, 38, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff4d4d;
+        }
+
+        .container {
+            padding-top: 100px;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-bottom: 50px;
+        }
+
+        .card {
+            background: rgba(30, 30, 30, 0.95);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 10px 20px rgba(255, 77, 77, 0.6);
+        }
+
+        .card h2 {
+            font-size: 2em;
+            color: #ff4d4d;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        .card p.bold {
+            font-weight: 600;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card h2 {
+                font-size: 1.8em;
+            }
+
+            .card p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="level-up.html">Level-up</a></li>
+            <li><a href="observer-bot.html">Observer Bot</a></li>
+            <li><a href="bawi-tks.html">Bawi TakeOvers</a></li>
+            <li><a href="player-of-the-week.html">Player Of The Week</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Bawistan Citizen -->
+        <div class="card">
+            <h2>Bawistan Citizen 🏛️</h2>
+            <p class="bold">Text level: 100<br>Voice level: 50</p>
+            <p>👑 Top role with all the privileges from previous roles.</p>
+        </div>
+
+        <!-- Bawi Legend -->
+        <div class="card">
+            <h2>Bawi Legend 🦸‍♂️</h2>
+            <p class="bold">Text level: 80<br>Voice level: 45</p>
+            <p>🎖️ All perks from previous roles.</p>
+        </div>
+
+        <!-- Bawi Master -->
+        <div class="card">
+            <h2>Bawi Master 🥋</h2>
+            <p class="bold">Text level: 69<br>Voice level: 38</p>
+            <p>🔄 Able to reset all the warns you've got from the Observer Bot.</p>
+        </div>
+
+        <!-- Bawi Veteran -->
+        <div class="card">
+            <h2>Bawi Veteran 🎖️</h2>
+            <p class="bold">Text level: 60<br>Voice level: 35</p>
+            <p>🧩 Able to add your own emoji to the server.</p>
+        </div>
+
+        <!-- Bawi Elite -->
+        <div class="card">
+            <h2>Bawi Elite 🌟</h2>
+            <p class="bold">Text level: 50<br>Voice level: 30</p>
+            <p>📨 Able to send messages in #media.</p>
+        </div>
+
+        <!-- Bawi Hero -->
+        <div class="card">
+            <h2>Bawi Hero 🦸</h2>
+            <p class="bold">Text level: 44<br>Voice level: 28</p>
+            <p>📎 Able to attach files in general.<br>🌐 Able to use external emojis.</p>
+        </div>
+
+        <!-- Bawi Champion -->
+        <div class="card">
+            <h2>Bawi Champion 🏆</h2>
+            <p class="bold">Text level: 40<br>Voice level: 25</p>
+            <p>🎙️ Able to send voice messages in general.<br>📊 Able to make polls in general.</p>
+        </div>
+
+        <!-- Bawi Warrior -->
+        <div class="card">
+            <h2>Bawi Warrior 🗡️</h2>
+            <p class="bold">Text level: 32<br>Voice level: 20</p>
+            <p>🔍 Able to get tested for the skill roles expert and champ.</p>
+        </div>
+
+        <!-- Bawi Ranger -->
+        <div class="card">
+            <h2>Bawi Ranger 🏹</h2>
+            <p class="bold">Text level: 27<br>Voice level: 17</p>
+            <p>💼 Able to apply for staff.</p>
+        </div>
+
+        <!-- Bawi Journeyman -->
+        <div class="card">
+            <h2>Bawi Journeyman 🧭</h2>
+            <p class="bold">Text level: 23<br>Voice level: 15</p>
+            <p>📝 Being able to change your server name.</p>
+        </div>
+
+        <!-- Bawi Adventurer -->
+        <div class="card">
+            <h2>Bawi Adventurer 🧗</h2>
+            <p class="bold">Text level: 19<br>Voice level: 12</p>
+            <p>🎉 Able to apply for event manager role.<br>🔓 Able to see the Burst code channel.</p>
+        </div>
+
+        <!-- Bawi Explorer -->
+        <div class="card">
+            <h2>Bawi Explorer 🧳</h2>
+            <p class="bold">Text level: 15<br>Voice level: 8</p>
+            <p>🛠️ Able to get the skill roles Pro, Elite & Master if you meet its requirements.</p>
+        </div>
+
+        <!-- Bawi Rookie -->
+        <div class="card">
+            <h2>Bawi Rookie 🏅</h2>
+            <p class="bold">Text level: 10<br>Voice level: 4</p>
+            <p>💻 Able to apply for code manager role.</p>
+        </div>
+
+        <!-- Bawi Apprentice -->
+        <div class="card">
+            <h2>Bawi Apprentice 🛠️</h2>
+            <p class="bold">Text level: 8<br>Voice level: 3</p>
+            <p>📎 Able to attach files in #media.<br>📢 Able to report (open a support ticket).</p>
+        </div>
+
+        <!-- Bawi Newbie -->
+        <div class="card">
+            <h2>Bawi Newbie 🐣</h2>
+            <p class="bold">Text level: 5<br>Voice level: 2</p>
+            <p>🔗 Able to create server invite.</p>
+        </div>
+    </div>
+
+</body>
+</html>
