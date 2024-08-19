@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bawi TKs - Bawi Agario Clan</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #1a1a1a;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        nav {
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(38, 38, 38, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff4d4d;
+        }
+
+        .container {
+            padding-top: 100px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-bottom: 50px;
+        }
+
+        .card {
+            background: rgba(30, 30, 30, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .card h2 {
+            font-size: 2em;
+            color: #ff4d4d;
+            margin-bottom: 15px;
+        }
+
+        .gallery-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .gallery {
+            display: flex;
+            transition: transform 0.3s ease;
+            scroll-behavior: smooth;
+            transform: translateX(0);
+        }
+
+        .gallery img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            margin-right: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 77, 77, 0.7);
+        }
+
+        .gallery-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            color: #ffffff;
+            font-size: 24px;
+            border-radius: 50%;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .gallery-button:hover {
+            background-color: #ff4d4d;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .gallery-button.left {
+            left: 10px;
+        }
+
+        .gallery-button.right {
+            right: 10px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card h2 {
+                font-size: 1.8em;
+            }
+
+            .gallery img {
+                max-width: 100%;
+            }
+
+            .gallery-button {
+                font-size: 20px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="level-up.html">Level-up</a></li>
+            <li><a href="observer-bot.html">Observer Bot</a></li>
+            <li><a href="bawi-tks.html">Bawi TakeOvers</a></li>
+            <li><a href="player-of-the-week.html">Player Of The Week</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h2>Bawi's Agario Takeovers 🕹️</h2>
+            <p>Experience the epic takeovers organized by Bawi's Agario clan! Scroll through our gallery to see some of the best moments.</p>
+            <div class="gallery-container">
+                <button class="gallery-button left" onclick="scrollGallery(-1)">&#10094;</button>
+                <div class="gallery">
+                    <img src="https://media.discordapp.net/attachments/1051492199210160209/1275117036049137736/IMG-20240819-WA0007.jpg?ex=66c4b8c7&is=66c36747&hm=2141818c9332ed765f56ad6ecec6718087a2a9451b4e9924ea4ab74d29e30814&=&format=webp&width=1303&height=905" alt="Bawi Takeover 1">
+                    <img src="https://media.discordapp.net/attachments/1051492199210160209/1275104346756878366/IMG_0151.png?ex=66c4acf6&is=66c35b76&hm=91659b13574c6a0ea5549154ba6be6842294a260696ca5eccbb5621aea9ca69f&=&format=webp&quality=lossless&width=1920&height=887" alt="Bawi Takeover 2">
+                    <img src="https://media.discordapp.net/attachments/1051492199210160209/1275059620163092602/IMG_1444.png?ex=66c4834e&is=66c331ce&hm=2c29873ee1e63dccd89485ee48e4232d3e08d36a3728fa02823c2b1a74281840&=&format=webp&quality=lossless&width=1207&height=905" alt="Bawi Takeover 3">
+                    <img src="https://media.discordapp.net/attachments/1051492199210160209/1275178581617672262/IMG_7909.png?ex=66c4f219&is=66c3a099&hm=be40f3ace34f1ec083897815c550cb05c69634037560d4076206dca0c360b384&=&format=webp&quality=lossless" alt="Bawi Takeover 4">
+                    <img src="https://media.discordapp.net/attachments/1051492199210160209/1275176919611998332/IMG_3168.png?ex=66c4f08d&is=66c39f0d&hm=7764d79943884dc53f829c87a85c28acfde5a337c8c74dd86726062228b449e9&=&format=webp&quality=lossless&width=1920&height=887" alt="Bawi Takeover 5">
+                </div>
+                <button class="gallery-button right" onclick="scrollGallery(1)">&#10095;</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let scrollIndex = 0;
+
+        function scrollGallery(direction) {
+            const gallery = document.querySelector('.gallery');
+            const galleryWidth = gallery.clientWidth;
+            const imageWidth = gallery.querySelector('img').clientWidth + 20; // 20 is the margin-right
+
+            scrollIndex += direction;
+            const maxScrollIndex = Math.floor((gallery.scrollWidth - galleryWidth) / imageWidth);
+
+            if (scrollIndex < 0) {
+                scrollIndex = 0;
+            } else if (scrollIndex > maxScrollIndex) {
+                scrollIndex = maxScrollIndex;
+            }
+
+            gallery.style.transform = `translateX(-${scrollIndex * imageWidth}px)`;
+        }
+    </script>
+
+</body>
+</html>
