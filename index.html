@@ -101,6 +101,21 @@
             visibility: visible;
         }
 
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 4px;
+            transition: all 0.3s ease;
+        }
+
         .content-container {
             padding-top: 120px;
             width: 90%;
@@ -239,6 +254,11 @@
         }
 
         @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+                z-index: 1100;
+            }
+
             .content-container {
                 padding-top: 100px;
             }
@@ -263,6 +283,26 @@
             .team-member img {
                 width: 80px;
                 height: 80px;
+            }
+
+            .nav-links-mobile {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                background: rgba(38, 38, 38, 0.9);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.4s ease, visibility 0.4s ease;
+            }
+
+            .nav-links-mobile.show {
+                opacity: 1;
+                visibility: visible;
             }
         }
 
@@ -361,7 +401,7 @@
             <div class="team-member">
                 <img src="https://cdn.discordapp.com/avatars/1143583220135370833/21d09d0c315b05675fb4dce231a0a359.webp?size=4096" alt="Co-Owner">
                 <h3>GodzFather</h3>
-                <span>Admin</span>
+                <span>Co-Owner</span>
             </div>
         </div>
 
