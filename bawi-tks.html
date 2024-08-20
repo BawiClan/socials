@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -126,60 +127,70 @@
             margin-bottom: 15px;
         }
 
-        .gallery-container {
+        .slideshow-container {
             position: relative;
+            max-width: 100%;
+            margin: auto;
             overflow: hidden;
-            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
         }
 
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
+        .slides {
+            display: none;
+            width: 100%;
+            animation: fadeIn 1s ease;
         }
 
-        .gallery img {
+        .slides img {
             width: 100%;
-            max-width: 300px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+        }
+
+        .prev, .next {
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.6);
         }
 
-        .gallery img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 77, 77, 0.7);
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
         }
 
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
+        .prev:hover, .next:hover {
+            background-color: #ff4d4d;
         }
 
-        .lightbox img {
-            max-width: 90%;
-            max-height: 80%;
-            border-radius: 10px;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.9);
+        .dot-container {
+            text-align: center;
+            padding: 10px 0;
         }
 
-        .lightbox:target {
-            display: flex;
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
         }
 
-        .gallery-button {
-            display: none;
+        .active, .dot:hover {
+            background-color: #ff4d4d;
         }
 
         @keyframes fadeInUp {
@@ -193,13 +204,28 @@
             }
         }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0.5;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
         @media (max-width: 768px) {
             .card h2 {
                 font-size: 1.8em;
             }
 
-            .gallery img {
-                max-width: 100%;
+            .prev, .next {
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            .dot {
+                height: 12px;
+                width: 12px;
             }
         }
 
@@ -210,6 +236,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <nav>
@@ -237,37 +264,73 @@
     <div class="container">
         <div class="card">
             <h2>Bawi's Agario Takeovers 🕹️</h2>
-            <p>Experience the epic takeovers organized by Bawi's Agario clan! Scroll through our gallery to see some of the best moments.</p>
-            <div class="gallery-container">
-                <div class="gallery">
-                    <a href="#img1"><img src="https://media.discordapp.net/attachments/1051492199210160209/1275117036049137736/IMG-20240819-WA0007.jpg?ex=66c4b8c7&is=66c36747&hm=2141818c9332ed765f56ad6ecec6718087a2a9451b4e9924ea4ab74d29e30814&=&format=webp&width=1303&height=905" alt="Bawi Takeover 1"></a>
-                    <a href="#img2"><img src="https://media.discordapp.net/attachments/1051492199210160209/1275104346756878366/IMG_0151.png?ex=66c4acf6&is=66c35b76&hm=91659b13574c6a0ea5549154ba6be6842294a260696ca5eccbb5621aea9ca69f&=&format=webp&quality=lossless&width=1920&height=887" alt="Bawi Takeover 2"></a>
-                    <a href="#img3"><img src="https://media.discordapp.net/attachments/1051492199210160209/1275059620163092602/IMG_1444.png?ex=66c4834e&is=66c331ce&hm=2c29873ee1e63dccd89485ee48e4232d3e08d36a3728fa02823c2b1a74281840&=&format=webp&quality=lossless&width=1207&height=905" alt="Bawi Takeover 3"></a>
-                    <a href="#img4"><img src="https://media.discordapp.net/attachments/1051492199210160209/1275178581617672262/IMG_7909.png?ex=66c4f219&is=66c3a099&hm=be40f3ace34f1ec083897815c550cb05c69634037560d4076206dca0c360b384&=&format=webp&quality=lossless" alt="Bawi Takeover 4"></a>
-                    <a href="#img5"><img src="https://media.discordapp.net/attachments/1051492199210160209/1275176919611998332/IMG_3168.png?ex=66c4f08d&is=66c39f0d&hm=7764d79943884dc53f829c87a85c28acfde5a337c8c74dd86726062228b449e9&=&format=webp&quality=lossless&width=1920&height=887" alt="Bawi Takeover 5"></a>
+            <p>Experience the epic takeovers organized by Bawi's Agario clan! Scroll through our slideshow to see some of the best moments.</p>
+            <div class="slideshow-container">
+                <div class="slides fade">
+                    <img src="https://media.discordapp.net/attachments/1051492199210160209/1275117036049137736/IMG-20240819-WA0007.jpg?ex=66c4b8c7&is=66c36747&hm=2141818c9332ed765f56ad6ecec6718087a2a9451b4e9924ea4ab74d29e30814&=&format=webp&width=1303&height=905" alt="Bawi Takeover 1">
                 </div>
+                <div class="slides fade">
+                    <img src="https://media.discordapp.net/attachments/1051492199210160209/1275104346756878366/IMG_0151.png?ex=66c4acf6&is=66c35b76&hm=91659b13574c6a0ea5549154ba6be6842294a260696ca5eccbb5621aea9ca69f&=&format=webp&quality=lossless&width=1920&height=887" alt="Bawi Takeover 2">
+                </div>
+                <div class="slides fade">
+                    <img src="https://media.discordapp.net/attachments/1051492199210160209/1275059620163092602/IMG_1444.png?ex=66c4834e&is=66c331ce&hm=2c29873ee1e63dccd89485ee48e4232d3e08d36a3728fa02823c2b1a74281840&=&format=webp&quality=lossless&width=1207&height=905" alt="Bawi Takeover 3">
+                </div>
+                <div class="slides fade">
+                    <img src="https://media.discordapp.net/attachments/1051492199210160209/1275178581617672262/IMG_7909.png?ex=66c4f219&is=66c3a099&hm=be40f3ace34f1ec083897815c550cb05c69634037560d4076206dca0c360b384&=&format=webp&quality=lossless" alt="Bawi Takeover 4">
+                </div>
+                <div class="slides fade">
+                    <img src="https://media.discordapp.net/attachments/1051492199210160209/1275176919611998332/IMG_3168.png?ex=66c4f08d&is=66c39f0d&hm=7764d79943884dc53f829c87a85c28acfde5a337c8c74dd86726062228b449e9&=&format=webp&quality=lossless&width=1920&height=887" alt="Bawi Takeover 5">
+                </div>
+
+                <!-- Navigation buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+
+            <!-- Dots/Indicators -->
+            <div class="dot-container">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
             </div>
         </div>
     </div>
 
-    <!-- Lightbox -->
-    <div id="img1" class="lightbox">
-        <img src="https://media.discordapp.net/attachments/1051492199210160209/1275117036049137736/IMG-20240819-WA0007.jpg?ex=66c4b8c7&is=66c36747&hm=2141818c9332ed765f56ad6ecec6718087a2a9451b4e9924ea4ab74d29e30814&=&format=webp&width=1303&height=905" alt="Bawi Takeover 1">
-    </div>
-    <div id="img2" class="lightbox">
-        <img src="https://media.discordapp.net/attachments/1051492199210160209/1275104346756878366/IMG_0151.png?ex=66c4acf6&is=66c35b76&hm=91659b13574c6a0ea5549154ba6be6842294a260696ca5eccbb5621aea9ca69f&=&format=webp&quality=lossless&width=1920&height=887" alt="Bawi Takeover 2">
-    </div>
-    <div id="img3" class="lightbox">
-        <img src="https://media.discordapp.net/attachments/1051492199210160209/1275059620163092602/IMG_1444.png?ex=66c4834e&is=66c331ce&hm=2c29873ee1e63dccd89485ee48e4232d3e08d36a3728fa02823c2b1a74281840&=&format=webp&quality=lossless&width=1207&height=905" alt="Bawi Takeover 3">
-    </div>
-    <div id="img4" class="lightbox">
-        <img src="https://media.discordapp.net/attachments/1051492199210160209/1275178581617672262/IMG_7909.png?ex=66c4f219&is=66c3a099&hm=be40f3ace34f1ec083897815c550cb05c69634037560d4076206dca0c360b384&=&format=webp&quality=lossless" alt="Bawi Takeover 4">
-    </div>
-    <div id="img5" class="lightbox">
-        <img src="https://media.discordapp.net/attachments/1051492199210160209/1275176919611998332/IMG_3168.png?ex=66c4f08d&is=66c39f0d&hm=7764d79943884dc53f829c87a85c28acfde5a337c8c74dd86726062228b449e9&=&format=webp&quality=lossless&width=1920&height=887" alt="Bawi Takeover 5">
-    </div>
-
     <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slides");
+            let dots = document.getElementsByClassName("dot");
+
+            if (n > slides.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = slides.length
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+
         function toggleMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
             mobileMenu.classList.toggle('show');
@@ -275,4 +338,5 @@
     </script>
 
 </body>
+
 </html>
