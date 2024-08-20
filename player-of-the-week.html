@@ -106,7 +106,7 @@
 
         /* Main Content Styles */
         .content-container {
-            margin-top: 150px; /* Increased margin-top to avoid overlapping */
+            margin-top: 150px;
             width: 100%;
             max-width: 1200px;
             padding: 20px;
@@ -124,7 +124,7 @@
 
         .subtitle {
             font-size: 1.2rem;
-            margin-bottom: 60px; /* Increased margin-bottom to give more space between subtitle and podium */
+            margin-bottom: 60px;
             color: #bbbbbb;
             text-align: center;
         }
@@ -137,7 +137,7 @@
             align-items: flex-end;
             gap: 20px;
             margin-bottom: 50px;
-            flex-wrap: wrap; /* Added for responsive behavior */
+            flex-wrap: wrap;
         }
 
         .podium-step {
@@ -291,13 +291,14 @@
             }
 
             .podium {
-                flex-direction: column;
-                align-items: center;
-                gap: 30px;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-end;
+                gap: 10px;
             }
 
             .podium-step {
-                width: 80%;
+                width: 30%;
                 height: auto;
             }
 
@@ -388,13 +389,6 @@
                     <span class="leaderboard-name">Player Five</span>
                 </div>
                 <span class="leaderboard-position">5th Place</span>
-            </div>
-            <div class="leaderboard-item">
-                <div class="leaderboard-rank">
-                    <img src="https://imgs.search.brave.com/d4tfqNXK-mT5c8ILMn5X7MJ3YBtiM21wX6bE6RpJ4Gc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzA3Lzll/LzczLzA3OWU3MzUx/YjBmOWUwMzYyMTBm/MDQxNmUwMGY5M2Jk/LmpwZw" alt="Player Six">
-                    <span class="leaderboard-name">Player Six</span>
-                </div>
-                <span class="leaderboard-position">6th Place</span>
             </div>
         </div>
     </div>
