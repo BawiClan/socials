@@ -91,6 +91,13 @@
             top: 60px;
             left: 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.4s ease-in-out;
+        }
+
+        .nav-links-mobile.show {
+            max-height: 300px; /* Adjust based on the number of items */
         }
 
         .nav-links-mobile li {
@@ -292,7 +299,7 @@
     <script>
         function toggleMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+            mobileMenu.classList.toggle('show');
         }
     </script>
 
