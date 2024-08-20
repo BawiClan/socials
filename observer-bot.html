@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,13 +24,17 @@
 
         nav {
             width: 100%;
-            padding: 20px 0;
-            background: rgba(38, 38, 38, 0.8);
+            padding: 15px 0;
+            background: rgba(38, 38, 38, 0.9);
             position: fixed;
             top: 0;
             left: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
         }
 
         nav ul {
@@ -38,16 +43,17 @@
             margin: 0;
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         nav ul li {
-            margin: 0 15px;
+            margin: 10px 15px;
         }
 
         nav ul li a {
             text-decoration: none;
             color: #ffffff;
-            font-size: 18px;
+            font-size: 16px;
             transition: color 0.3s ease;
         }
 
@@ -55,8 +61,48 @@
             color: #ff4d4d;
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-links-mobile {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            background: rgba(38, 38, 38, 0.9);
+            position: absolute;
+            top: 60px;
+            left: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .nav-links-mobile.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
         .container {
-            padding-top: 100px;
+            padding-top: 120px;
             width: 100%;
             max-width: 800px;
             margin: 0 auto;
@@ -68,13 +114,14 @@
         }
 
         .card {
-            background: rgba(30, 30, 30, 0.95);
+            background: linear-gradient(135deg, rgba(255, 77, 77, 0.2), rgba(255, 77, 77, 0.1));
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: left;
             animation: fadeInUp 0.5s ease forwards;
+            border: 1px solid rgba(255, 77, 77, 0.4);
         }
 
         .card:hover {
@@ -83,15 +130,17 @@
         }
 
         .card h2 {
-            font-size: 2em;
+            font-size: 2.5em;
             color: #ff4d4d;
             margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 77, 77, 0.4);
         }
 
         .card p {
-            font-size: 1.1em;
+            font-size: 1.2em;
             line-height: 1.6;
             margin: 10px 0;
+            color: #dddddd;
         }
 
         .button-container {
@@ -156,8 +205,20 @@
         }
 
         @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-links-mobile {
+                display: flex;
+            }
+
             .card h2 {
-                font-size: 1.8em;
+                font-size: 2em;
             }
 
             .card p {
@@ -168,12 +229,31 @@
                 flex-direction: column;
             }
         }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #ff4d4d;
+        }
     </style>
 </head>
+
 <body>
 
     <nav>
-        <ul>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="level-up.html">Level-up</a></li>
+            <li><a href="observer-bot.html">Observer Bot</a></li>
+            <li><a href="bawi-tks.html">Bawi TakeOvers</a></li>
+            <li><a href="player-of-the-week.html">Player Of The Week</a></li>
+        </ul>
+        <ul class="nav-links-mobile" id="mobileMenu">
             <li><a href="index.html">Home</a></li>
             <li><a href="level-up.html">Level-up</a></li>
             <li><a href="observer-bot.html">Observer Bot</a></li>
@@ -206,5 +286,13 @@
         </div>
     </div>
 
+    <script>
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('show');
+        }
+    </script>
+
 </body>
+
 </html>
