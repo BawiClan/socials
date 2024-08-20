@@ -91,13 +91,14 @@
             top: 60px;
             left: 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height 0.4s ease-in-out;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
 
         .nav-links-mobile.show {
-            max-height: 300px; /* Adjust based on the number of items */
+            opacity: 1;
+            visibility: visible;
         }
 
         .nav-links-mobile li {
