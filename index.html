@@ -4,238 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>族ılBawi↝ | | | ᯓBawi❥</title>
+    <title>Under Maintenance - Bawi Clan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-        body {
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body {
             font-family: 'Poppins', sans-serif;
-            background: #1a1a1a;
+            background-color: #121212;
             color: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
             text-align: center;
-            overflow-x: hidden;
-        }
-
-        nav {
-            width: 100%;
-            padding: 15px 0;
-            background: rgba(38, 38, 38, 0.9);
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .logo {
-            font-size: 1.5em;
-            color: #ff4d4d;
-            margin-left: 20px;
-        }
-
-        .logo img {
-            width: 40px;
-            height: 40px;
-            vertical-align: middle;
-            margin-right: 10px;
-        }
-
-        .nav-links, .nav-links-mobile {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-        }
-
-        .nav-links a, .nav-links-mobile a {
-            text-decoration: none;
-            color: #ffffff;
-            font-size: 16px;
-            margin: 0 15px;
-            padding: 5px 10px;
-            border-radius: 20px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .nav-links a:hover, .nav-links-mobile a:hover {
-            background-color: #ff4d4d;
-            color: #ffffff;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            margin-right: 20px;
-        }
-
-        .hamburger div {
-            width: 25px;
-            height: 3px;
-            background-color: #fff;
-            margin: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links-mobile {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            background: rgba(38, 38, 38, 0.9);
-            position: absolute;
-            top: 60px;
-            left: 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
-        }
-
-        .nav-links-mobile.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .content-container {
-            padding-top: 100px;
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .intro {
-            background: rgba(30, 30, 30, 0.95);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            animation: fadeInUp 0.5s ease forwards;
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .intro h1 {
-            font-size: 2.5em;
-            color: #ff4d4d;
-            margin: 0;
-        }
-
-        .intro img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        .intro p {
-            font-size: 1.2em;
-            color: #dddddd;
-            line-height: 1.6;
-            margin-top: 15px;
-        }
-
-        .team-section {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .team-member {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: rgba(20, 20, 20, 0.9);
-            border-radius: 20px;
             padding: 20px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: #ffcc00;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #bbbbbb;
+            margin-bottom: 40px;
+            animation: fadeIn 2s ease-in;
+            animation-delay: 1s;
+        }
+
+        .gif-container {
+            margin-bottom: 30px;
+            animation: bounce 2s infinite;
+        }
+
+        .gif-container img {
             width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
 
-        .team-member:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 10px 20px rgba(255, 77, 77, 0.6);
-        }
-
-        .team-member img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin-bottom: 10px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        .team-member h3 {
-            margin: 0;
-            font-size: 1.1em;
+        .message {
+            font-size: 1.2rem;
             color: #ffffff;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in;
+            animation-delay: 2s;
         }
 
-        .team-member span {
-            display: block;
-            font-size: 0.9em;
-            color: #ff4d4d;
+        .footer {
+            font-size: 1rem;
+            color: #bbbbbb;
+            margin-top: 40px;
         }
 
-        .button-container {
-            margin-top: 30px;
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 25px;
-            background: #ff4d4d;
-            border-radius: 30px;
-            text-decoration: none;
-            color: #ffffff;
-            font-size: 1.1em;
-            text-transform: uppercase;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0px 5px 15px rgba(255, 77, 77, 0.4);
-            cursor: pointer;
-        }
-
-        .button svg {
-            margin-right: 8px;
-            width: 20px;
-            height: 20px;
-            fill: #ffffff;
-        }
-
-        .button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 10px 20px rgba(255, 77, 77, 0.6);
-        }
-
-        @keyframes fadeInUp {
+        /* Animations */
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(-20px);
             }
             to {
                 opacity: 1;
@@ -243,133 +83,51 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-                z-index: 1100;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
             }
-
-            .nav-links {
-                display: none;
+            40% {
+                transform: translateY(-30px);
             }
-
-            .nav-links-mobile {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-                background: rgba(38, 38, 38, 0.9);
-                position: absolute;
-                top: 60px;
-                left: 0;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-                opacity: 0;
-                visibility: hidden;
-                transition: opacity 0.4s ease, visibility 0.4s ease;
-            }
-
-            .nav-links-mobile.show {
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .intro h1 {
-                font-size: 2em;
-            }
-
-            .intro img {
-                width: 60px;
-                height: 60px;
-            }
-
-            .intro p {
-                font-size: 1.1em;
-            }
-
-            .team-member {
-                width: 120px;
-            }
-
-            .team-member img {
-                width: 80px;
-                height: 80px;
+            60% {
+                transform: translateY(-15px);
             }
         }
 
-        footer {
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #ff4d4d;
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .message {
+                font-size: 1rem;
+            }
+
+            .gif-container img {
+                width: 120px;
+                height: 120px;
+            }
         }
     </style>
 </head>
 
 <body>
-
-    <nav>
-        <div class="logo">
-            <img src="https://cdn.discordapp.com/icons/765291237035675688/a_f4f265069037d289035c6ff601dbcd87.gif" alt="Logo">
-            族ılBawi↝ | | | ᯓBawi❥
-        </div>
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Roster</a>
-            <a href="#">Player of the Week</a>
-            <a href="#">Contact</a>
-        </div>
-        <div class="hamburger" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <div class="nav-links-mobile" id="mobileMenu">
-            <a href="#">Home</a>
-            <a href="#">Roster</a>
-            <a href="#">Player of the Week</a>
-            <a href="#">Contact</a>
-        </div>
-    </nav>
-
-    <div class="content-container">
-        <div class="intro">
-            <img src="https://cdn.discordapp.com/icons/765291237035675688/a_f4f265069037d289035c6ff601dbcd87.gif" alt="Logo">
-            <div>
-                <h1>Welcome to 族ılBawi↝</h1>
-                <p>Meet the team and learn more about our top players. We’re dedicated to excellence and passion in every game.</p>
-            </div>
-        </div>
-
-        <div class="team-section">
-            <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/858143044843298846/605d89c9692bba26d4936dc05c0f6cce.png" alt="Player 1">
-                <h3>Player 1</h3>
-                <span>Position</span>
-            </div>
-            <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/858143044843298846/605d89c9692bba26d4936dc05c0f6cce.png" alt="Player 2">
-                <h3>Player 2</h3>
-                <span>Position</span>
-            </div>
-            <!-- Add more team members as needed -->
-        </div>
-
-        <div class="button-container">
-            <a href="#" class="button">Learn More</a>
-            <a href="#" class="button">Join Us</a>
-        </div>
+    <h1 class="title">Under Maintenance</h1>
+    <p class="subtitle">We are currently working on some improvements. Please check back later.</p>
+    
+    <div class="gif-container">
+        <img src="https://cdn.discordapp.com/icons/1051484753552998460/a_2faf88a4c540b39d30151bc23c6bbbb8.gif?size=4096" alt="Bawi Clan GIF">
     </div>
 
-    <footer>
-        &copy; 2024 族ılBawi↝ | | | ᯓBawi❥ - All rights reserved
+    <p class="message">Thank you for your patience and understanding.</p>
+    <footer class="footer">
+        &copy; 2024 Bawi Clan. All rights reserved.
     </footer>
-
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('show');
-        }
-    </script>
-
 </body>
 
 </html>
