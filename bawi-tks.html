@@ -3,41 +3,34 @@
 
 <head>
     <meta charset="UTF-8">
+    <title>Bawi Clan - Agario Mod Menus</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bawi TKs - Bawi Agario Clan</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="description" content="Explore the different Agar.io mod menus offered by Bawi Clan for entertainment purposes. Download our Android and iOS menus to enhance your gameplay experience.">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Experience the epic takeovers organized by Bawi's Agario clan. Browse through our slideshow to see some of the best moments.">
-    <meta name="keywords" content="Bawi Clan, Agario Clan, Agario Takeovers, Bawi TKs, Agario Events, Agar.io, Clan Events">
-    <meta name="author" content="Bawi Clan">
-
-    <!-- Open Graph Meta Tags for Social Media Sharing -->
-    <meta property="og:title" content="Bawi TKs - Bawi Agario Clan">
-    <meta property="og:description" content="Experience the epic takeovers organized by Bawi's Agario clan. Browse through our slideshow to see some of the best moments.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/BawiClan/socials/main/img/tk1.png">
-    <meta property="og:url" content="https://yourwebsiteurl.com/bawi-tks.html">
-    <meta name="twitter:card" content="summary_large_image">
-
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Inline CSS -->
     <style>
         /* Global Styles */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #1a1a1a;
+            background-color: #121212;
             color: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         a {
@@ -48,8 +41,8 @@
         /* Navigation Styles */
         nav {
             width: 100%;
-            background-color: #262626;
-            padding: 20px 40px;
+            background-color: #1f1f1f;
+            padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -57,232 +50,401 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s;
         }
 
-        .nav-logo {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #ffcc00;
-        }
-
-        .nav-links {
+        nav .logo {
             display: flex;
-            gap: 30px;
+            align-items: center;
         }
 
-        .nav-links a {
-            font-size: 1rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
+        nav .logo img {
+            width: 45px;
+            height: 45px;
+            margin-right: 10px;
+            border-radius: 50%;
+            animation: spin 10s linear infinite;
         }
 
-        .nav-links a:hover {
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        nav .logo h1 {
+            font-size: 1.5em;
             color: #ffcc00;
+            font-weight: 600;
         }
 
-        .hamburger {
+        nav .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        nav .nav-links li {
+            margin: 0 12px;
+            position: relative;
+        }
+
+        nav .nav-links a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        /* Hover Animation for Nav Links */
+        nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background-color: #ff4d4d;
+            left: 0;
+            bottom: -5px;
+            transition: width 0.3s;
+        }
+
+        nav .nav-links a:hover::after,
+        nav .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu */
+        nav .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
             gap: 5px;
         }
 
-        .hamburger div {
+        nav .hamburger div {
             width: 25px;
             height: 3px;
-            background-color: #fff;
+            background-color: #ffffff;
             transition: all 0.3s ease;
         }
 
+        /* Mobile Menu */
         .mobile-menu {
             display: none;
             flex-direction: column;
-            background-color: #262626;
+            background-color: #1f1f1f;
             position: absolute;
-            top: 70px;
+            top: 60px;
             left: 0;
             width: 100%;
-            padding: 20px 0;
+            padding: 15px 0;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             z-index: 999;
         }
 
         .mobile-menu a {
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-size: 1rem;
             font-weight: 500;
             transition: background 0.3s ease;
+            color: #ffffff;
         }
 
-        .mobile-menu a:hover {
-            background-color: #2a2a2a;
+        .mobile-menu a:hover,
+        .mobile-menu a.active {
+            background-color: #333333;
         }
 
         /* Main Content Styles */
         .content-container {
-            margin-top: 150px; /* Increased margin-top to avoid overlapping */
+            margin-top: 80px; /* Adjusted to accommodate fixed nav */
             width: 100%;
-            max-width: 1200px;
+            max-width: 1000px;
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
-        .card {
-            background: rgba(30, 30, 30, 0.95);
-            padding: 30px;
+        /* Animated Background */
+        .menus::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #121212, #1f1f1f);
+            background-size: 400% 400%;
+            animation: gradientAnimation 20s ease infinite;
+            opacity: 0.1;
+            z-index: -1;
+            transition: background 0.3s;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Introductory Section */
+        .intro-section {
+            background: rgba(31, 31, 31, 0.95);
+            padding: 25px 35px;
             border-radius: 20px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
             text-align: center;
-            animation: fadeInUp 0.5s ease forwards;
+            animation: fadeInUp 0.8s ease forwards;
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
 
-        .card h2 {
+        .intro-section h2 {
             font-size: 2em;
             color: #ff4d4d;
             margin-bottom: 15px;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(255, 77, 77, 0.4);
         }
 
-        .slideshow-container {
-            position: relative;
-            max-width: 100%;
-            margin: auto;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+        .intro-section p {
+            font-size: 1.1em;
+            color: #dddddd;
+            line-height: 1.6;
         }
 
-        .slides {
-            display: none;
+        /* Download Sections */
+        .download-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
             width: 100%;
-            animation: fadeIn 1s ease;
+            max-width: 800px;
+            animation: fadeInUp 1s ease forwards;
+            opacity: 0;
         }
 
-        .slides img {
-            width: 100%;
+        .download-card {
+            background: rgba(31, 31, 31, 0.9);
+            padding: 20px 30px;
             border-radius: 20px;
-        }
-
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -22px;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-            user-select: none;
-            z-index: 1000;
-            background-color: rgba(0, 0, 0, 0.6);
-        }
-
-        .prev {
-            left: 10px;
-            border-radius: 3px 0 0 3px;
-        }
-
-        .next {
-            right: 10px;
-            border-radius: 3px 0 0 3px;
-        }
-
-        .prev:hover, .next:hover {
-            background-color: #ff4d4d;
-        }
-
-        .dot-container {
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
             text-align: center;
-            padding: 10px 0;
+            width: 280px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
 
-        .dot {
-            cursor: pointer;
-            height: 15px;
-            width: 15px;
-            margin: 0 2px;
-            background-color: #bbb;
-            border-radius: 50%;
+        .download-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 30px rgba(255, 77, 77, 0.6);
+            background: rgba(255, 77, 77, 0.2);
+            border: 1px solid #ff4d4d;
+        }
+
+        .download-card h3 {
+            font-size: 1.5em;
+            color: #ff4d4d;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-shadow: 0 0 5px rgba(255, 77, 77, 0.4);
+        }
+
+        .download-card p {
+            font-size: 1em;
+            color: #dddddd;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .download-card a.button {
             display: inline-block;
-            transition: background-color 0.6s ease;
-        }
-
-        .active, .dot:hover {
+            padding: 10px 20px;
             background-color: #ff4d4d;
+            color: #ffffff;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            text-transform: uppercase;
+            font-weight: 600;
+            box-shadow: 0px 5px 10px rgba(255, 77, 77, 0.4);
         }
 
+        .download-card a.button:hover {
+            background-color: #ff1a1a;
+            transform: scale(1.05);
+            box-shadow: 0px 10px 20px rgba(255, 77, 77, 0.6);
+        }
+
+        /* Footer Styles */
+        footer {
+            width: 100%;
+            background-color: #1f1f1f;
+            padding: 25px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 40px;
+            transition: background-color 0.3s;
+        }
+
+        footer .socials {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        footer .socials a {
+            color: #ffffff;
+            font-size: 1.5em;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        footer .socials a:hover {
+            color: #ff4d4d;
+            transform: scale(1.2);
+        }
+
+        footer p {
+            font-size: 0.9em;
+            color: #ffcc00;
+            margin-top: 10px;
+            transition: color 0.3s;
+        }
+
+        footer p a {
+            color: #ffcc00;
+            text-decoration: underline;
+        }
+
+        footer p a:hover {
+            color: #ffffff;
+        }
+
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0.5;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-links {
+            nav .nav-links {
                 display: none;
+                flex-direction: column;
+                background-color: #1f1f1f;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 100%;
+                padding: 15px 0;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             }
 
-            .hamburger {
+            nav .nav-links li {
+                margin: 15px 0;
+                text-align: center;
+            }
+
+            nav .hamburger {
                 display: flex;
             }
 
             .mobile-menu {
+                display: none;
+                flex-direction: column;
+                background-color: #1f1f1f;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                padding: 15px 0;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+
+            .mobile-menu.show {
                 display: flex;
             }
 
-            .card h2 {
-                font-size: 1.8em;
+            .content-container {
+                padding: 15px 10px;
             }
 
-            .prev, .next {
-                padding: 12px;
-                font-size: 14px;
+            .download-section {
+                flex-direction: column;
+                align-items: center;
             }
 
-            .dot {
-                height: 12px;
-                width: 12px;
+            .download-card {
+                width: 90%;
             }
-        }
 
-        footer {
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #ff4d4d;
+            nav .logo h1 {
+                font-size: 1.3em;
+            }
+
+            nav .nav-links a {
+                font-size: 1em;
+            }
+
+            footer .socials a {
+                font-size: 1.3em;
+            }
         }
     </style>
 </head>
 
-<body>
+<body class="menus">
 
     <!-- Navigation -->
     <nav>
-        <div class="nav-logo">Bawi Clan</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="bawi-tks.html">Bawi TakeOvers</a>
-            <a href="player-of-the-week.html">Players Of The Week</a>
-            <a href="level-up.html">Level-up</a>
-            <a href="observer-bot.html">The Observer</a>
+        <div class="logo">
+            <img src="https://cdn.discordapp.com/icons/1051484753552998460/a_2faf88a4c540b39d30151bc23c6bbbb8.gif?size=128" alt="Bawi Clan Logo">
+            <h1>Bawi Clan</h1>
         </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="bawi-tks.html" class="active">Agario Mod Menus</a></li>
+            <li><a href="player-of-the-week.html">Players of the Week</a></li>
+            <li><a href="level-up.html">Level Up</a></li>
+            <li><a href="skill-roles.html">Skill Roles</a></li>
+            <li><a href="observer-bot.html">The Observer</a></li>
+        </ul>
         <div class="hamburger" onclick="toggleMobileMenu()">
             <div></div>
             <div></div>
@@ -290,104 +452,69 @@
         </div>
         <div class="mobile-menu" id="mobileMenu">
             <a href="index.html">Home</a>
-            <a href="bawi-tks.html">Bawi TakeOvers</a>
-            <a href="player-of-the-week.html">Players Of The Week</a>
-            <a href="level-up.html">Level-up</a>
+            <a href="about.html">About Us</a>
+            <a href="bawi-tks.html" class="active">Agario Mod Menus</a>
+            <a href="player-of-the-week.html">Players of the Week</a>
+            <a href="level-up.html">Level Up</a>
+            <a href="skill-roles.html">Skill Roles</a>
             <a href="observer-bot.html">The Observer</a>
         </div>
     </nav>
 
     <div class="content-container">
-        <div class="card">
-            <h2>Bawi's Agario Takeovers 🕹️</h2>
-            <p>Experience the epic takeovers organized by Bawi's Agario clan! Scroll through our slideshow to see some of the best moments.</p>
-            <div class="slideshow-container">
-                <div class="slides fade">
-                    <img src="https://raw.githubusercontent.com/BawiClan/socials/main/img/tk1.png" alt="Bawi Takeover 1">
-                </div>
-                <div class="slides fade">
-                    <img src="https://raw.githubusercontent.com/BawiClan/socials/main/img/tk2.png" alt="Bawi Takeover 2">
-                </div>
-                <div class="slides fade">
-                    <img src="https://raw.githubusercontent.com/BawiClan/socials/main/img/tk3.png" alt="Bawi Takeover 3">
-                </div>
-                <div class="slides fade">
-                    <img src="https://raw.githubusercontent.com/BawiClan/socials/main/img/tk4.png" alt="Bawi Takeover 4">
-                </div>
-                <div class="slides fade">
-                    <img src="https://raw.githubusercontent.com/BawiClan/socials/main/img/tk5.png" alt="Bawi Takeover 5">
-                </div>
-                <div class="slides fade">
-                    <img src="https://raw.githubusercontent.com/BawiClan/socials/main/img/tk6.png" alt="Bawi Takeover 6">
-                </div>
-                <div class="slides fade">
-                    <img src="https://raw.githubusercontent.com/BawiClan/socials/main/img/tk7.png" alt="Bawi Takeover 7">
-                </div>
-                <div class="slides fade">
-                    <img src="https://raw.githubusercontent.com/BawiClan/socials/main/img/tk8.png" alt="Bawi Takeover 8">
-                </div>
-                <div class="slides fade">
-                    <img src="https://raw.githubusercontent.com/BawiClan/socials/main/img/tk9.png" alt="Bawi Takeover 9">
-                </div>
+        <!-- Introductory Section -->
+        <div class="intro-section">
+            <h2>🚀 Upgrade Your Game with Mod Menus!🚀</h2>
+            <p>
+                Enhance your Agar.io experience with our exclusive mod menus! Whether you're on Android or iOS, our mods are designed to give you an edge and make your gameplay more enjoyable. Download now and join the ranks of elite players!
+            </p>
+        </div>
 
-                <!-- Navigation buttons -->
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <!-- Download Sections -->
+        <div class="download-section">
+            <!-- Android Menu -->
+            <div class="download-card">
+                <h3>📱 Android Mod</h3>
+                <p>🔥 Latest BiteYT Mod | Uploaded on 18/09/2024</p>
+                <a href="https://download2262.mediafire.com/rfucc1ew84vgSptVQnvpQoLXzbBfU74GMfmGzZFVRpA-6uZUt7KGwQh37ltj4g2cM-WElv1L_hWZge2n2EbTj-dU1pycm7V6N791RHRNArGPD_0i1rBUZ21KzRcKI7MK2Kk_c10SNMg_3G8rCUojb8__UduIcQu1bhcS1w342kQV/ebma68dp04locuc/Agar.io-2.28.3_BiteYt-VIP-X64_release_secured.apk" class="button" target="_blank" rel="noopener noreferrer">Download Android</a>
             </div>
 
-            <!-- Dots/Indicators -->
-            <div class="dot-container">
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
-                <span class="dot" onclick="currentSlide(5)"></span>
-                <span class="dot" onclick="currentSlide(6)"></span>
-                <span class="dot" onclick="currentSlide(7)"></span>
-                <span class="dot" onclick="currentSlide(8)"></span>
-                <span class="dot" onclick="currentSlide(9)"></span>
+            <!-- iOS Menu -->
+            <div class="download-card">
+                <h3>🍎 iOS Mod</h3>
+                <p>🌟 Latest Amarillo + Anarky | Uploaded on 18/09/2024</p>
+                <a href="https://github.com/QxAngel/qxangel.github.io/releases/download/2/2.28.8.amarillo.1.1+anarky.ipa" class="button" target="_blank" rel="noopener noreferrer">Download iOS</a>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript -->
+    <!-- Footer -->
+    <footer>
+        <div class="socials">
+            <a href="https://discord.gg/bawi" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
+            <a href="https://www.youtube.com/@Bawi.io_agario" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/bawi.io/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@bawi.io_agario" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p>&copy; 2024 Bawi Clan. All rights reserved.</p>
+    </footer>
+
+    <!-- Inline JavaScript -->
     <script>
-        let slideIndex = 1;
-        showSlides(slideIndex);
-
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("slides");
-            let dots = document.getElementsByClassName("dot");
-
-            if (n > slides.length) {
-                slideIndex = 1
-            }
-            if (n < 1) {
-                slideIndex = slides.length
-            }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].className += " active";
-        }
-
+        // Mobile Navigation Toggle
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+            mobileMenu.classList.toggle('show');
         }
+
+        // Close mobile menu when clicking outside
+        window.addEventListener('click', function(e) {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.remove('show');
+            }
+        });
     </script>
 
 </body>
