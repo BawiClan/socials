@@ -1,434 +1,569 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <title>Bawi Clan - Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bawi Clan - Top Agar.io Mobile Clan </title>
-    <meta name="description" content="Join Bawi Clan, the leading Agar.io clan, and participate in exciting events, giveaways, and more. Connect with players on EU-Servers and become part of our community.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Meta Description for SEO -->
+    <meta name="description" content="Join Bawi Clan, the leading Agar.io clan. Connect with players worldwide, participate in events, and become part of our vibrant community.">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <!-- Inline CSS -->
     <style>
         /* Global Styles */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #1a1a1a;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            color: #fff;
+            background-color: #0d0d0d;
             overflow-x: hidden;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* Navigation Styles */
+        /* Navigation Bar */
         nav {
-            width: 100%;
-            background-color: #262626;
-            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px 40px;
+            background-color: #1a1a1a;
             position: fixed;
+            width: 100%;
             top: 0;
-            z-index: 1000;
+            z-index: 100;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
-        .nav-logo {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #ffcc00;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            font-size: 1rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #ffcc00;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .hamburger div {
-            width: 25px;
-            height: 3px;
-            background-color: #fff;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            background-color: #262626;
-            position: absolute;
-            top: 70px;
-            left: 0;
-            width: 100%;
-            padding: 20px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-
-        .mobile-menu a {
-            padding: 10px 20px;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: background 0.3s ease;
-        }
-
-        .mobile-menu a:hover {
-            background-color: #2a2a2a;
-        }
-
-        /* Main Content Styles */
-        .content-container {
-            margin-top: 150px;
-            width: 100%;
-            max-width: 1200px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .intro {
-            background: rgba(30, 30, 30, 0.95);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            animation: fadeInUp 0.5s ease forwards;
-            margin-bottom: 40px;
+        nav .logo {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 15px;
         }
 
-        .intro h1 {
-            font-size: 2.5em;
-            color: #ff4d4d;
-            margin: 0;
-        }
-
-        .intro img {
-            width: 80px;
-            height: 80px;
+        nav .logo img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
             border-radius: 50%;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
         }
 
-        .intro p {
-            font-size: 1.2em;
-            color: #dddddd;
-            line-height: 1.6;
-            margin-top: 15px;
+        nav .logo h1 {
+            font-size: 1.8em;
+            color: #ffcc00;
+            animation: glow 2s infinite;
         }
 
-        .team-section {
+        nav .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        nav .nav-links li {
+            margin: 0 15px;
+        }
+
+        nav .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        /* Hover Animation for Nav Links */
+        nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background-color: #ff4d4d;
+            left: 0;
+            bottom: -5px;
+            transition: width 0.3s;
+        }
+
+        nav .nav-links a:hover::after,
+        nav .nav-links a.active::after {
             width: 100%;
+        }
+
+        nav .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        nav .hamburger i {
+            font-size: 1.8em;
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(145deg, #0d0d0d, #1a1a1a);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        /* Animated Gradient Background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(-45deg, #ff4d4d, #ffcc00, #ff4d4d, #ffcc00);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+            color: #ffcc00;
+            z-index: 1;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            animation: fadeInDown 1s forwards;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin: 20px 0;
+            z-index: 1;
+            animation: fadeInUp 1s forwards;
+        }
+
+        .hero .btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .hero .btn {
+            background-color: #ff4d4d; /* Red button */
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
+            margin: 10px;
+        }
+
+        .hero .btn:hover {
+            background-color: #e63939;
+            transform: translateY(-5px);
+        }
+
+        /* Keyframes for Animations */
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px #ffcc00; }
+            50% { text-shadow: 0 0 20px #ffcc00; }
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 20px;
+            background-color: #1a1a1a;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: #ffcc00;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .testimonial-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
         }
 
-        .team-member {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: rgba(20, 20, 20, 0.9);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .testimonial {
+            background-color: #262626;
+            padding: 30px;
+            margin: 10px;
+            border-radius: 15px;
+            flex: 1 1 300px;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
             text-align: center;
-            width: 150px;
+            transition: transform 0.3s, background-color 0.3s;
         }
 
-        .team-member:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 10px 20px rgba(255, 77, 77, 0.6);
+        .testimonial:hover {
+            transform: translateY(-10px);
+            background-color: #333;
         }
 
-        .team-member img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin-bottom: 10px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        .team-member h3 {
-            margin: 0;
+        .testimonial p {
             font-size: 1.1em;
-            color: #ffffff;
+            margin-bottom: 20px;
         }
 
-        .team-member span {
-            display: block;
-            font-size: 0.9em;
-            color: #ff4d4d;
+        .testimonial h3 {
+            font-size: 1em;
+            color: #ffcc00;
         }
 
-        .button-container {
-            margin-top: 30px;
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Features Section */
+        .features {
             display: flex;
-            gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
+            padding: 80px 20px;
+            background-color: #0d0d0d;
         }
 
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 25px;
-            background: #ff4d4d;
-            border-radius: 30px;
+        .feature {
+            background-color: #262626;
+            padding: 40px;
+            margin: 15px;
+            border-radius: 15px;
+            flex: 1 1 250px;
+            max-width: 300px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            opacity: 0;
+            animation: fadeInUp 1s forwards;
+        }
+
+        .feature:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .feature:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .feature:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .feature i {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #ff4d4d; /* Red icons */
+            animation: iconPulse 2s infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .feature h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #ffcc00;
+        }
+
+        .feature p {
+            font-size: 1em;
+        }
+
+        /* Call to Action Section */
+        .cta {
+            background-color: #1a1a1a;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated Background for CTA */
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,77,77,0.2), transparent 70%);
+            animation: rotate 60s linear infinite reverse;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .cta h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #ffcc00;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s forwards;
+        }
+
+        .cta .btn {
+            background-color: #ff4d4d; /* Red button */
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 25px;
             text-decoration: none;
-            color: #ffffff;
-            font-size: 1.1em;
-            text-transform: uppercase;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0px 5px 15px rgba(255, 77, 77, 0.4);
-            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
+            animation: fadeInUp 1s forwards;
         }
 
-        .button svg {
-            margin-right: 8px;
-            width: 20px;
-            height: 20px;
-            fill: #ffffff;
-        }
-
-        .button:hover {
+        .cta .btn:hover {
+            background-color: #e63939;
             transform: translateY(-5px);
-            box-shadow: 0px 10px 20px rgba(255, 77, 77, 0.6);
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .mobile-menu {
-                display: none;
-            }
-
-            .mobile-menu.show {
-                display: flex;
-            }
-
-            .content-container {
-                padding: 20px 10px;
-            }
-        }
-
+        /* Footer */
         footer {
-            margin-top: 20px;
+            background-color: #0d0d0d;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated Footer Text */
+        footer p {
             font-size: 0.9em;
-            color: #ff4d4d;
+            color: #fff;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { color: #fff; }
+            50% { color: #ff4d4d; }
+        }
+
+        footer .socials {
+            margin-bottom: 15px;
+        }
+
+        footer .socials a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 1.5em;
+            transition: color 0.3s;
+        }
+
+        footer .socials a:hover {
+            color: #ff4d4d; /* Red on hover */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav .nav-links {
+                display: none;
+                flex-direction: column;
+                background-color: #1a1a1a;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 200px;
+                padding: 20px;
+                box-shadow: -2px 5px 15px rgba(0, 0, 0, 0.5);
+            }
+
+            nav .nav-links li {
+                margin: 15px 0;
+            }
+
+            nav .hamburger {
+                display: block;
+            }
+
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .testimonial-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero h2 {
+                font-size: 2em;
+            }
+
+            .testimonials h2,
+            .cta h2 {
+                font-size: 2em;
+            }
+
+            .hero .btn-group {
+                flex-direction: column;
+            }
+
+            .hero .btn,
+            .hero .btn-secondary {
+                width: 100%;
+                max-width: 250px;
+            }
         }
     </style>
-    <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Organization",
-      "name": "Bawi Clan",
-      "url": "https://bawiclan.com",
-      "logo": "https://cdn.discordapp.com/icons/1051484753552998460/a_2faf88a4c540b39d30151bc23c6bbbb8.gif",
-      "sameAs": [
-        "https://www.instagram.com/bawi.io/",
-        "https://www.youtube.com/@Bawi.io_agario",
-        "https://www.tiktok.com/@bawi.io_agario",
-        "https://discord.gg/bawi"
-      ],
-      "description": "Bawi Clan is a top Agar.io gaming community, known for hosting events, giveaways, and fostering a competitive environment on EU-Servers.",
-      "founder": {
-        "@type": "Person",
-        "name": "GodzFather"
-      },
-      "foundingDate": "2023"
-    }
-    </script>
 </head>
-
 <body>
 
-    <!-- Navigation -->
+    <!-- Navigation Bar -->
     <nav>
-        <div class="nav-logo">Bawi Clan</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="bawi-tks.html">Bawi TakeOvers</a>
-            <a href="player-of-the-week.html">Players Of The Week</a>
-            <a href="level-up.html">Level-up</a>
-            <a href="observer-bot.html">The Observer</a>
+        <div class="logo">
+            <img src="https://cdn.discordapp.com/icons/1051484753552998460/a_2faf88a4c540b39d30151bc23c6bbbb8.gif?size=128" alt="Bawi Clan Logo">
+            <h1>Bawi Clan</h1>
         </div>
-        <div class="hamburger" onclick="toggleMobileMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="index.html">Home</a>
-            <a href="bawi-tks.html">Bawi TakeOvers</a>
-            <a href="player-of-the-week.html">Players Of The Week</a>
-            <a href="level-up.html">Level-up</a>
-            <a href="observer-bot.html">The Observer</a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="bawi-tks.html">Agario Mod Menus</a></li>
+            <li><a href="player-of-the-week.html">Players of the Week</a></li>
+            <li><a href="level-up.html">Level Up</a></li>
+            <li><a href="skill-roles.html">Skill Roles</a></li> <!-- Added Skill Roles here -->
+            <lil><a href="observer-bot.html">The Observer</a></lil>
+        </ul>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
         </div>
     </nav>
 
-    <div class="content-container">
-        <!-- Intro Section -->
-        <div class="intro">
-            <img src="https://cdn.discordapp.com/icons/1051484753552998460/a_2faf88a4c540b39d30151bc23c6bbbb8.gif?size=4096" alt="Bawi Logo">
-            <h1>族ılBawi↝ | | | ᯓBawi❥</h1>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Welcome to Bawi Clan</h2>
+        <p>Experience the thrill of Agar.io with the world's leading clan.</p>
+        <div class="btn-group">
+            <a href="https://discord.gg/bawi" class="btn">Join Us!</a>
+            <!-- Removed Skill Roles button as per instruction -->
         </div>
-        <p>We are an international Agar.io Clan playing on EU-Servers (Eu central 1, Eu west 2 & Eu west 3) Mainly. We host plenty of Giveaways & Events for our active members in our discord server. Make sure you become a part of us as soon as possible.</p>
+    </section>
 
-        <!-- Team Section -->
-        <div class="team-section">
-            <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/1054847854390296686/a_c01ddb538be55af1876e88d1a8b82c7a.gif?size=4096" alt="B1 - Owner">
-                <h3>B1</h3>
-                <span>Owner</span>
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Players Say</h2>
+        <div class="testimonial-container">
+            <div class="testimonial">
+                <p>"Joining Bawi Clan was the best decision I've made. The community is fantastic!"</p>
+                <h3>- Bawi Player | Level 90</h3>
             </div>
-            <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/789025835646451714/6c0e47fbfe02c445bbe9cf977bcb6450.webp?size=4096" alt="Emircan - Co-Owner">
-                <h3>Emircan</h3>
-                <span>Co-Owner</span>
+            <div class="testimonial">
+                <p>"Bawi Clan has helped me improve my skills tremendously."</p>
+                <h3>- Bawi Player | Level 85</h3>
             </div>
-            <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/438037851356004352/0703d7b7f170a738b247a41d9f364bb3.webp?size=4096" alt="Anker - Co-Owner">
-                <h3>Anker</h3>
-                <span>Co-Owner</span>
+            <div class="testimonial">
+                <p>"The events and giveaways are amazing. Highly recommend joining!"</p>
+                <h3>- Bawi Player | Level 78</h3>
             </div>
-            <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/1053379342304030770/630276f0cdb1450c085cb359e47f87cf.webp?size=4096" alt="Boyo - Co-Owner">
-                <h3>Boyo</h3>
-                <span>Co-Owner</span>
+            <div class="testimonial">
+                <p>"I love the 24/7 active gameplay. There's always someone to play with!"</p>
+                <h3>- Bawi Player | Level 82</h3>
             </div>
-            <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/570271120641622037/f06edcbf3284700b7d27738d9ca763c3.webp?size=4096" alt="Amoor - Co-Owner">
-                <h3>Amoor</h3>
-                <span>Co-Owner</span>
-            </div>
-            <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/1121483017752432701/3e8ce56bc8524358c18d0f622d2a45fc.webp?size=4096" alt="Ao - Co-Owner">
-                <h3>Ao</h3>
-                <span>Co-Owner</span>
-            </div>
-            <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/1205958812968951809/9ffce8a837ee1f3200a465a2ace0d314.webp?size=4096" alt="Alparda - Co-Owner">
-                <h3>Alparda</h3>
-                <span>Co-Owner</span>
-            </div>
-            <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/943947133785096252/a_e13c6074e50429926c7fd7d5c3980586.gif?size=4096" alt="Trix - Co-Owner">
-                <h3>Trix</h3>
-                <span>Co-Owner</span>
-            </div>
-            <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/890551143846014976/404f92b5c69dbf8642ddfcb5543c3b32.webp?size=4096" alt="7_Ory - Co-Owner">
-                <h3>7_Ory</h3>
-                <span>Co-Owner</span>
-            </div>
-            <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/763580263150125057/44458e6209bbda282174c1ed008ebbcc.webp?size=4096" alt="Shoaib - Co-Owner">
-                <h3>Shoaib</h3>
-                <span>Co-Owner</span>
-            </div>
-            <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/1143583220135370833/21d09d0c315b05675fb4dce231a0a359.webp?size=4096" alt="GodzFather - Co-Owner">
-                <h3>GodzFather</h3>
-                <span>Co-Owner</span>
-            </div>
-            <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/1056260850769461359/45865e641f1e5d37fabe133b9f571ce8.webp?size=4096" alt="Berat - Admin">
-                <h3>Berat</h3>
-                <span>Admin</span>
+            <div class="testimonial">
+                <p>"The supportive environment helped me reach new heights in my gameplay."</p>
+                <h3>- Bawi Player | Level 88</h3>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Button Section -->
-    <div class="button-container">
-        <a href="https://discord.gg/bawi" class="button">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-                <path d="M524.5 69.8a1.5 1.5 0 0 0 -.8-.7A485.1 485.1 0 0 0 404.1 32a1.8 1.8 0 0 0 -1.9 .9 337.5 337.5 0 0 0 -14.9 30.6 447.8 447.8 0 0 0 -134.4 0 309.5 309.5 0 0 0 -15.1-30.6 1.9 1.9 0 0 0 -1.9-.9A483.7 483.7 0 0 0 116.1 69.1a1.7 1.7 0 0 0 -.8 .7C39.1 183.7 18.2 294.7 28.4 404.4a2 2 0 0 0 .8 1.4A487.7 487.7 0 0 0 176 479.9a1.9 1.9 0 0 0 2.1-.7A348.2 348.2 0 0 0 208.1 430.4a1.9 1.9 0 0 0 -1-2.6 321.2 321.2 0 0 1 -45.9-21.9 1.9 1.9 0 0 1 -.2-3.1c3.1-2.3 6.2-4.7 9.1-7.1a1.8 1.8 0 0 1 1.9-.3c96.2 43.9 200.4 43.9 295.5 0a1.8 1.8 0 0 1 1.9 .2c2.9 2.4 6 4.9 9.1 7.2a1.9 1.9 0 0 1 -.2 3.1 301.4 301.4 0 0 1 -45.9 21.8 1.9 1.9 0 0 0 -1 2.6 391.1 391.1 0 0 0 30 48.8 1.9 1.9 0 0 0 2.1 .7A486 486 0 0 0 610.7 405.7a1.9 1.9 0 0 0 .8-1.4C623.7 277.6 590.9 167.5 524.5 69.8zM222.5 337.6c-29 0-52.8-26.6-52.8-59.2S193.1 219.1 222.5 219.1c29.7 0 53.3 26.8 52.8 59.2C275.3 311 251.9 337.6 222.5 337.6zm195.4 0c-29 0-52.8-26.6-52.8-59.2S388.4 219.1 417.9 219.1c29.7 0 53.3 26.8 52.8 59.2C470.7 311 447.5 337.6 417.9 337.6z" />
-            </svg> Official Discord Server
-        </a>
-        <a href="https://www.youtube.com/@Bawi.io_agario" class="button">
-            <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube" class="svg-inline--fa fa-youtube fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                <path fill="currentColor" d="M549.655 124.083c-6.281-23.729-24.84-42.288-48.569-48.569C459.222 64 288 64 288 64S116.778 64 74.914 75.514c-23.729 6.281-42.288 24.84-48.569 48.569C14.008 166.947 14.008 256 14.008 256s0 89.053 12.337 131.917c6.281 23.729 24.84 42.288 48.569 48.569C116.778 448 288 448 288 448s171.222 0 213.086-11.514c23.729-6.281 42.288-24.84 48.569-48.569C561.992 345.053 561.992 256 561.992 256s0-89.053-12.337-131.917zm-317.928 213.91V174.007l142.04 81.997-142.04 81.989z"></path>
-            </svg> Official YouTube
-        </a>
-        <a href="https://www.instagram.com/bawi.io/" class="button">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
-            </svg> Official Instagram
-        </a>
-        <a href="https://www.tiktok.com/@bawi.io_agario" class="button">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z" />
-            </svg> Official TikTok
-        </a>
-    </div>
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature">
+            <i class="fas fa-gamepad"></i>
+            <h3>24/7 Active Gameplay</h3>
+            <p>Join games any time of the day with our always-active community.</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-users"></i>
+            <h3>Friendly Community</h3>
+            <p>Meet new friends and enjoy a welcoming atmosphere.</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-headset"></i>
+            <h3>Supportive Environment</h3>
+            <p>Get help and tips from experienced players.</p>
+        </div>
+    </section>
 
-    <!-- JavaScript -->
+    <!-- Call to Action Section -->
+    <section class="cta">
+        <h2>Ready to Join the Best?</h2>
+        <a href="https://discord.gg/bawi" class="btn">Join Us!</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="socials">
+            <a href="https://discord.gg/bawi"><i class="fab fa-discord"></i></a>
+            <a href="https://www.youtube.com/@Bawi.io_agario"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/bawi.io/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@bawi.io_agario"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p>&copy; 2024 Bawi Clan. All rights reserved.</p>
+    </footer>
+
+    <!-- Inline JavaScript -->
     <script>
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('show');
-        }
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+        });
+
+        // Close navigation menu after clicking a link (for mobile)
+        navLinks.addEventListener('click', () => {
+            if (navLinks.classList.contains('nav-active')) {
+                navLinks.classList.remove('nav-active');
+            }
+        });
     </script>
 
-
-
 </body>
-
 </html>
