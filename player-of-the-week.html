@@ -1,19 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Players of the Week - Bawi Agario Clan</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Celebrating the top performers of the week in Bawi's Agario Clan. Discover who stood out and keep pushing your limits!">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Inline CSS -->
     <style>
         /* Global Styles */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -25,6 +29,8 @@
             align-items: center;
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         a {
@@ -44,43 +50,78 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s;
         }
 
-        .nav-logo {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #ffcc00;
-        }
-
-        .nav-links {
+        nav .logo {
             display: flex;
-            gap: 30px;
+            align-items: center;
         }
 
-        .nav-links a {
-            font-size: 1rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
+        nav .logo img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
         }
 
-        .nav-links a:hover {
+        nav .logo h1 {
+            font-size: 1.8em;
             color: #ffcc00;
+            font-weight: 600;
         }
 
-        .hamburger {
+        nav .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        nav .nav-links li {
+            margin: 0 15px;
+            position: relative;
+        }
+
+        nav .nav-links a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        /* Hover Animation for Nav Links */
+        nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background-color: #ff4d4d;
+            left: 0;
+            bottom: -5px;
+            transition: width 0.3s;
+        }
+
+        nav .nav-links a:hover::after,
+        nav .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu */
+        nav .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
             gap: 5px;
         }
 
-        .hamburger div {
+        nav .hamburger div {
             width: 25px;
             height: 3px;
-            background-color: #fff;
+            background-color: #ffffff;
             transition: all 0.3s ease;
         }
 
+        /* Mobile Menu */
         .mobile-menu {
             display: none;
             flex-direction: column;
@@ -99,35 +140,84 @@
             font-size: 1rem;
             font-weight: 500;
             transition: background 0.3s ease;
+            color: #ffffff;
         }
 
-        .mobile-menu a:hover {
-            background-color: #2a2a2a;
+        .mobile-menu a:hover,
+        .mobile-menu a.active {
+            background-color: #333333;
         }
 
         /* Main Content Styles */
         .content-container {
-            margin-top: 150px;
+            margin-top: 100px; /* Adjusted to accommodate fixed nav */
             width: 100%;
             max-width: 1200px;
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
-        .title {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #ffcc00;
-            text-align: center;
+        /* Animated Background */
+        .players::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #121212, #1f1f1f);
+            background-size: 400% 400%;
+            animation: gradientAnimation 20s ease infinite;
+            opacity: 0.1;
+            z-index: -1;
+            transition: background 0.3s;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 60px;
-            color: #bbbbbb;
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Introductory Disclaimer */
+        .intro-disclaimer {
+            background: rgba(31, 31, 31, 0.95);
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
             text-align: center;
+            animation: fadeInUp 0.8s ease forwards;
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .intro-disclaimer h2 {
+            font-size: 2em;
+            color: #ff4d4d;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .intro-disclaimer p {
+            font-size: 1.1em;
+            color: #dddddd;
+            line-height: 1.6;
         }
 
         /* Podium Styles */
@@ -196,7 +286,7 @@
         }
 
         .podium-step.first::before {
-            background-image: url('https://cdn.discordapp.com/avatars/1257071513816010867/96bec2998c033f5805d16ad5fbec4b6c.webp?size=1024&format=webp');
+            background-image: url('https://cdn.discordapp.com/avatars/1257071513816010867/0df73840a8565727047dbfac19fd2a48.webp');
             box-shadow: 0 0 20px rgba(240, 196, 25, 0.8);
         }
 
@@ -208,7 +298,7 @@
         }
 
         .podium-step.second::before {
-            background-image: url('https://cdn.discordapp.com/avatars/739768180523794512/324e51f2d66c059a302f7717765ecbad.webp?size=1024&format=webp&width=0&height=256');
+            background-image: url('https://cdn.discordapp.com/avatars/739768180523794512/68b0aac17fb3d313213fd84fa2e5f644.webp?size=1024');
             box-shadow: 0 0 20px rgba(192, 192, 192, 0.8);
         }
 
@@ -220,7 +310,7 @@
         }
 
         .podium-step.third::before {
-            background-image: url('https://cdn.discordapp.com/avatars/1056260850769461359/c1a821ac0a36710a2cc2aeb2ffab5fb6.webp?size=1024&format=webp&width=0&height=256');
+            background-image: url('https://cdn.discordapp.com/avatars/1056260850769461359/ce4e9cf17bae054d882b49058b730bab.webp?size=1024');
             box-shadow: 0 0 20px rgba(205, 127, 50, 0.8);
         }
 
@@ -273,17 +363,79 @@
             color: #ffcc00;
         }
 
+        /* Footer Styles */
+        footer {
+            width: 100%;
+            background-color: #1f1f1f;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: auto; /* Push footer to the bottom */
+            transition: background-color 0.3s;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            color: #ff4d4d;
+            margin-top: 10px;
+            transition: color 0.3s;
+        }
+
+        footer .socials {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        footer .socials a {
+            color: #ffffff;
+            font-size: 1.5em;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        footer .socials a:hover {
+            color: #ff4d4d;
+            transform: scale(1.2);
+        }
+
         /* Responsive Styles */
         @media (max-width: 768px) {
-            .nav-links {
+            nav .nav-links {
                 display: none;
+                flex-direction: column;
+                background-color: #1f1f1f;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             }
 
-            .hamburger {
+            nav .nav-links li {
+                margin: 15px 0;
+            }
+
+            nav .hamburger {
                 display: flex;
             }
 
             .mobile-menu {
+                display: none;
+                flex-direction: column;
+                background-color: #1f1f1f;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                padding: 20px 0;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+
+            .mobile-menu.show {
                 display: flex;
             }
 
@@ -320,21 +472,31 @@
                 width: 40px;
                 height: 40px;
             }
+
+            footer .socials a {
+                font-size: 1.3em;
+            }
         }
     </style>
 </head>
-<body>
+
+<body class="players">
 
     <!-- Navigation -->
     <nav>
-        <div class="nav-logo">Bawi Clan</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="bawi-tks.html">Bawi TakeOvers</a>
-            <a href="player-of-the-week.html">Player Of The Week</a>
-            <a href="level-up.html">Level-up</a>
-            <a href="observer-bot.html">The Observer</a>
+        <div class="logo">
+            <img src="https://cdn.discordapp.com/icons/1051484753552998460/a_2faf88a4c540b39d30151bc23c6bbbb8.gif?size=128" alt="Bawi Clan Logo">
+            <h1>Bawi Clan</h1>
         </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="menus.html">Agario Mod Menus</a></li>
+            <li><a href="player-of-the-week.html" class="active">Player Of The Week</a></li>
+            <li><a href="level-up.html">Level Up</a></li>
+            <li><a href="skill-roles.html">Skill Roles</a></li>
+            <li><a href="observer-bot.html">The Observer</a></li>
+        </ul>
         <div class="hamburger" onclick="toggleMobileMenu()">
             <div></div>
             <div></div>
@@ -342,17 +504,24 @@
         </div>
         <div class="mobile-menu" id="mobileMenu">
             <a href="index.html">Home</a>
-            <a href="bawi-tks.html">Bawi TakeOvers</a>
-            <a href="player-of-the-week.html">Players Of The Week</a>
-            <a href="level-up.html">Level-up</a>
+            <a href="about.html">About Us</a>
+            <a href="menus.html">Agario Mod Menus</a>
+            <a href="player-of-the-week.html" class="active">Player Of The Week</a>
+            <a href="level-up.html">Level Up</a>
+            <a href="skill-roles.html">Skill Roles</a>
             <a href="observer-bot.html">The Observer</a>
         </div>
     </nav>
 
     <!-- Main Content -->
     <div class="content-container">
-        <h1 class="title">Players of the Week 🏆</h1>
-        <p class="subtitle">Celebrating the top performers of the week. Keep pushing your limits! 💪</p>
+        <!-- Introductory Disclaimer -->
+        <div class="intro-disclaimer">
+            <h2>Players of the Week 🏆</h2>
+            <p>Celebrating the top performers of the week. Keep pushing your limits! 💪
+            
+            </p>
+        </div>
 
         <!-- Podium Section -->
         <div class="podium">
@@ -380,7 +549,7 @@
             <div class="leaderboard-item">
                 <div class="leaderboard-rank">
                     <img src="https://cdn.discordapp.com/avatars/988143769650090054/1cc9e331ffb5703b92f42dab9a75e958.webp" alt="Player Four">
-                    <span class="leaderboard-name">Akaza<span>
+                    <span class="leaderboard-name">Akaza</span>
                 </div>
                 <span class="leaderboard-position">4th Place</span>
             </div>
@@ -394,13 +563,77 @@
         </div>
     </div>
 
-    <!-- JavaScript -->
+    <!-- Footer -->
+    <footer>
+        <div class="socials">
+            <a href="https://discord.gg/bawi" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
+            <a href="https://www.youtube.com/@Bawi.io_agario" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/bawi.io/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@bawi.io_agario" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p>&copy; 2024 Bawi Clan. All rights reserved.</p>
+    </footer>
+
+    <!-- Inline JavaScript -->
     <script>
+        // Mobile Navigation Toggle
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+            mobileMenu.classList.toggle('show');
         }
+
+        // Close mobile menu when clicking outside
+        window.addEventListener('click', function (e) {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.remove('show');
+            }
+        });
+
+        // Slideshow Functionality
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slideshow img');
+        const dots = document.querySelectorAll('.slideshow .dots span');
+        let slideTimer;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                dots[i].classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                    dots[i].classList.add('active');
+                }
+            });
+        }
+
+        function changeSlide(n) {
+            slideIndex = (slideIndex + n + slides.length) % slides.length;
+            showSlide(slideIndex);
+            resetSlideTimer();
+        }
+
+        function currentSlide(n) {
+            slideIndex = n;
+            showSlide(slideIndex);
+            resetSlideTimer();
+        }
+
+        function resetSlideTimer() {
+            clearInterval(slideTimer);
+            slideTimer = setInterval(() => {
+                changeSlide(1);
+            }, 5000);
+        }
+
+        // Initialize the slideshow
+        showSlide(slideIndex);
+        slideTimer = setInterval(() => {
+            changeSlide(1);
+        }, 5000);
     </script>
 
 </body>
+
 </html>
