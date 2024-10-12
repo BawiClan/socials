@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bawi Clan - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta Description for SEO -->
+    <meta name="description" content="Join Bawi Clan, the leading Agar.io clan. Connect with players worldwide, participate in events, and become part of our vibrant community.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Inline CSS -->
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            background-color: #0d0d0d;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: rgba(26, 26, 26, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        nav .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        nav .logo img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
+            animation: glow 2s infinite;
+        }
+
+        nav .logo h1 {
+            font-size: 1.8em;
+            color: #ffcc00;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+            animation: glowText 2s infinite;
+        }
+
+        nav .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        nav .nav-links li {
+            margin: 0 5px;
+            position: relative;
+        }
+
+        /* Updated Navigation Buttons */
+        nav .nav-links a {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #1a1a1a;
+            color: #FFFDD0; /* Cream color */
+            border: 1px solid #333;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 204, 0, 0.3), rgba(255, 77, 77, 0.3));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        nav .nav-links a:hover::after,
+        nav .nav-links a.active::after {
+            opacity: 1;
+        }
+
+        nav .nav-links a:hover,
+        nav .nav-links a.active {
+            color: #ffcc00;
+            border-color: #ffcc00;
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+        }
+
+        /* Hamburger Menu */
+        nav .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        nav .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background-color: rgba(26, 26, 26, 0.95);
+            position: absolute;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        /* Updated Mobile Menu Buttons */
+        .mobile-menu a {
+            padding: 15px 20px;
+            margin: 5px 20px;
+            background: #1a1a1a;
+            color: #FFFDD0;
+            border: 1px solid #333;
+            border-radius: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-menu a::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 204, 0, 0.3), rgba(255, 77, 77, 0.3));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .mobile-menu a:hover::after,
+        .mobile-menu a.active::after {
+            opacity: 1;
+        }
+
+        .mobile-menu a:hover,
+        .mobile-menu a.active {
+            color: #ffcc00;
+            border-color: #ffcc00;
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(145deg, #0d0d0d, #1a1a1a);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 20px;
+            width: 100%;
+            margin-top: 80px; /* To prevent content hiding behind fixed nav */
+        }
+
+        /* Animated Gradient Background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(-45deg, #ff4d4d, #ffcc00, #ff4d4d, #ffcc00);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+            color: #ffcc00;
+            z-index: 1;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            animation: fadeInDown 1s forwards;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin: 20px 0;
+            z-index: 1;
+            animation: fadeInUp 1s forwards;
+        }
+
+        .hero .btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            gap: 20px;
+            animation: fadeInUp 1s forwards;
+        }
+
+        .hero .btn {
+            background-color: #ff4d4d; /* Red button */
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero .btn:hover {
+            background-color: #e63939;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 77, 77, 0.6);
+        }
+
+        /* Keyframes for Animations */
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow {
+            0%,
+            100% {
+                box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 20px rgba(255, 204, 0, 1);
+            }
+        }
+
+        @keyframes glowText {
+            0%,
+            100% {
+                text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+            }
+
+            50% {
+                text-shadow: 0 0 20px rgba(255, 204, 0, 1);
+            }
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 20px;
+            background-color: #1a1a1a;
+            text-align: center;
+            width: 100%;
+        }
+
+        .testimonials h2 {
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: #ffcc00;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .testimonial-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        .testimonial {
+            background-color: #262626;
+            padding: 30px;
+            margin: 10px;
+            border-radius: 15px;
+            flex: 1 1 300px;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            transition: transform 0.3s, background-color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 77, 77, 0.2), transparent 70%);
+            animation: rotate 60s linear infinite;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-10px);
+            background-color: #333;
+        }
+
+        .testimonial p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            color: #dddddd;
+        }
+
+        .testimonial h3 {
+            font-size: 1em;
+            color: #ffcc00;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 80px 20px;
+            background-color: #0d0d0d;
+            width: 100%;
+        }
+
+        .feature {
+            background-color: #262626;
+            padding: 40px;
+            margin: 15px;
+            border-radius: 15px;
+            flex: 1 1 250px;
+            max-width: 300px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            animation: fadeInUp 1s forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .feature:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .feature:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 77, 77, 0.2), transparent 70%);
+            animation: rotate 60s linear infinite reverse;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .feature i {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #ff4d4d; /* Red icons */
+            animation: iconPulse 2s infinite;
+        }
+
+        @keyframes iconPulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .feature h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #ffcc00;
+        }
+
+        .feature p {
+            font-size: 1em;
+            color: #dddddd;
+        }
+
+        /* Call to Action Section */
+        .cta {
+            background-color: #1a1a1a;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        /* Animated Background for CTA */
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 77, 77, 0.2), transparent 70%);
+            animation: rotate 60s linear infinite reverse;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .cta h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #ffcc00;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s forwards;
+        }
+
+        .cta .btn {
+            background-color: #ff4d4d; /* Red button */
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta .btn:hover {
+            background-color: #e63939;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 77, 77, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0d0d0d;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            color: #ffcc00;
+        }
+
+        /* Animated Footer Text */
+        footer p {
+            font-size: 0.9em;
+            color: #ffcc00;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%,
+            100% {
+                color: #ffcc00;
+            }
+
+            50% {
+                color: #ff4d4d;
+            }
+        }
+
+        footer .socials {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        footer .socials a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 1.5em;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        footer .socials a:hover {
+            color: #ff4d4d; /* Red on hover */
+            transform: scale(1.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav .nav-links {
+                display: none;
+                flex-direction: column;
+                background-color: rgba(26, 26, 26, 0.95);
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 200px;
+                padding: 20px;
+                box-shadow: -2px 5px 15px rgba(0, 0, 0, 0.5);
+            }
+
+            nav .nav-links li {
+                margin: 15px 0;
+            }
+
+            nav .hamburger {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: none;
+                flex-direction: column;
+                background-color: rgba(26, 26, 26, 0.95);
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                padding: 20px 0;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+
+            .mobile-menu.show {
+                display: flex;
+            }
+
+            .hero h2 {
+                font-size: 2em;
+            }
+
+            .testimonials h2,
+            .cta h2 {
+                font-size: 2em;
+            }
+
+            .hero .btn-group {
+                flex-direction: column;
+            }
+
+            .hero .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <img src="https://cdn.discordapp.com/icons/1051484753552998460/a_2faf88a4c540b39d30151bc23c6bbbb8.gif?size=128" alt="Bawi Clan Logo">
+            <h1>Bawi Clan</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="bawi-tks.html">Agario Mod Menus</a></li>
+            <li><a href="player-of-the-week.html">Players of the Week</a></li>
+            <li><a href="level-up.html">Level Up</a></li>
+            <li><a href="skill-roles.html">Skill Roles</a></li>
+            <li><a href="observer-bot.html">The Observer</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMobileMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="bawi-tks.html">Agario Mod Menus</a>
+            <a href="player-of-the-week.html">Players of the Week</a>
+            <a href="level-up.html">Level Up</a>
+            <a href="skill-roles.html">Skill Roles</a>
+            <a href="observer-bot.html">The Observer</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Welcome to Bawi Clan 🎉</h2>
+        <p>Experience the thrill of Agar.io with the world's leading clan.</p>
+        <div class="btn-group">
+            <a href="https://discord.gg/bawi" class="btn">🔗 Join Us!</a>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Players Say 🗣️</h2>
+        <div class="testimonial-container">
+            <div class="testimonial">
+                <p>"Joining Bawi Clan was the best decision I've made. The community is fantastic!"</p>
+                <h3>- Bawi Player | Level 90</h3>
+            </div>
+            <div class="testimonial">
+                <p>"Bawi Clan has helped me improve my skills tremendously."</p>
+                <h3>- Bawi Player | Level 85</h3>
+            </div>
+            <div class="testimonial">
+                <p>"The events and giveaways are amazing. Highly recommend joining!"</p>
+                <h3>- Bawi Player | Level 78</h3>
+            </div>
+            <div class="testimonial">
+                <p>"I love the 24/7 active gameplay. There's always someone to play with!"</p>
+                <h3>- Bawi Player | Level 82</h3>
+            </div>
+            <div class="testimonial">
+                <p>"The supportive environment helped me reach new heights in my gameplay."</p>
+                <h3>- Bawi Player | Level 88</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature">
+            <i class="fas fa-gamepad"></i>
+            <h3>24/7 Active Gameplay 🕒</h3>
+            <p>Join games any time of the day with our always-active community.</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-users"></i>
+            <h3>Friendly Community 🤝</h3>
+            <p>Meet new friends and enjoy a welcoming atmosphere.</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-headset"></i>
+            <h3>Supportive Environment 🛠️</h3>
+            <p>Get help and tips from experienced players.</p>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta">
+        <h2>Ready to Join the Best? 🚀</h2>
+        <a href="https://discord.gg/bawi" class="btn">👉 Join Us Now!</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="socials">
+            <a href="https://discord.gg/bawi" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
+            <a href="https://www.youtube.com/@Bawi.io_agario" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/bawi.io/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@bawi.io_agario" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p>&copy; 2024 Bawi Clan. All rights reserved.</p>
+    </footer>
+
+    <!-- Inline JavaScript -->
+    <script>
+        // Mobile Navigation Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('show');
+        }
+
+        // Close mobile menu when clicking outside
+        window.addEventListener('click', function (e) {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.remove('show');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
