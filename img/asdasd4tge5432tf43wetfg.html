@@ -71,6 +71,9 @@
     .countdown {
       color: #ff0;
     }
+    .btn {
+      margin-right: 10px;
+    }
     /* Responsive adjustments */
     @media (max-width: 576px) {
       #app {
@@ -130,8 +133,8 @@
 
     // Cloudinary Upload Widget
     const uploadWidget = cloudinary.createUploadWidget({
-      cloudName: 'dwtiej5jn', // Replace with your Cloudinary cloud name
-      uploadPreset: 'unsigned_preset', // Replace with your unsigned upload preset
+      cloudName: 'YOUR_CLOUD_NAME', // Replace with your Cloudinary cloud name
+      uploadPreset: 'YOUR_UPLOAD_PRESET', // Replace with your unsigned upload preset
       sources: ['local', 'url', 'camera'],
       folder: 'videos',
       resourceType: 'video',
@@ -162,6 +165,7 @@
       const fileData = {
         url: fileInfo.secure_url,
         name: fileInfo.original_filename,
+        public_id: fileInfo.public_id,
         uploadTime: uploadTime
       };
       fileList.push(fileData);
@@ -205,10 +209,13 @@
         const timeLeft = 48 * 60 * 60 * 1000 - (currentTime - file.uploadTime); // Time left in ms
         const fileItem = document.createElement('div');
         fileItem.className = 'file-item';
+        // Create direct download link using fl_attachment
+        const downloadUrl = file.url.replace('/upload/', '/upload/fl_attachment/');
         fileItem.innerHTML = `
           <h3>${file.name}</h3>
           <p>Time left: <span class="countdown" data-timeleft="${timeLeft}" data-uploadtime="${file.uploadTime}"></span></p>
-          <button onclick="downloadFile('${file.url}', '${file.name}')">Download Video</button>
+          <button class="btn btn-primary" onclick="downloadFile('${downloadUrl}', '${file.name}')">Download Video</button>
+          <button class="btn btn-secondary" onclick="copyShareableLink('${downloadUrl}')">Copy Shareable Link</button>
         `;
         fileListContainer.appendChild(fileItem);
       });
@@ -247,24 +254,23 @@
       }, 1000);
     }
 
-    // Download function compatible with iOS
+    // Download function
     function downloadFile(fileUrl, fileName) {
-      // Create a temporary link to trigger download
       const a = document.createElement('a');
       a.href = fileUrl;
-      a.target = '_blank';
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
 
-      // For iOS devices
-      if (navigator.userAgent.match(/(iPad|iPhone|iPod)/g)) {
-        // Open in a new tab, from where the user can save the video
-        window.open(fileUrl, '_blank');
-      } else {
-        // For other devices, use the download attribute
-        a.download = fileName;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      }
+    // Copy shareable link to clipboard
+    function copyShareableLink(fileUrl) {
+      navigator.clipboard.writeText(fileUrl).then(() => {
+        alert('Shareable link copied to clipboard!');
+      }).catch(err => {
+        console.error('Could not copy text: ', err);
+      });
     }
   </script>
 </body>
