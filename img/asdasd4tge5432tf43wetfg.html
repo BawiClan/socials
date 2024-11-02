@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Secure Video Portal</title>
+  <style>
+    /* Styling */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #1f1c2c, #928dab);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    #app {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    input[type="password"], button {
+      padding: 15px;
+      margin: 10px 0;
+      width: calc(100% - 30px);
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    input[type="password"] {
+      background: #333;
+      color: #fff;
+    }
+    button {
+      background: #61dafb;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #21a1f1;
+    }
+    .hidden {
+      display: none;
+    }
+    .message {
+      color: #f00;
+      font-size: 0.9em;
+    }
+    .file-item {
+      background: #444;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      text-align: left;
+    }
+    .file-item h3 {
+      margin: 0 0 5px 0;
+    }
+    .countdown {
+      color: #ff0;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>Secure Video Portal</h1>
+    <p>Please enter the PIN to access the portal.</p>
+    <input type="password" id="pinInput" placeholder="Enter PIN" />
+    <button onclick="authenticate()">Submit</button>
+    <p id="errorMsg" class="message hidden">Invalid PIN. Please try again.</p>
+    <div id="mainContent" class="hidden">
+      <div id="uploadSection">
+        <h2>Upload Video</h2>
+        <button id="uploadWidgetButton">Upload via Cloudinary</button>
+        <p id="uploadMsg" class="message"></p>
+      </div>
+      <div id="downloadSection">
+        <h2>Available Videos</h2>
+        <div id="fileList"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cloudinary Widget Script -->
+  <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+
+  <script>
+    // PIN Authentication
+    const correctPin = "Beam93##";
+    function authenticate() {
+      const pinInput = document.getElementById('pinInput').value;
+      const errorMsg = document.getElementById('errorMsg');
+      if (pinInput === correctPin) {
+        errorMsg.classList.add('hidden');
+        document.getElementById('mainContent').classList.remove('hidden');
+        document.getElementById('pinInput').value = '';
+        loadFiles();
+      } else {
+        errorMsg.classList.remove('hidden');
+      }
+    }
+
+    // Initialize File List
+    let fileList = [];
+
+    // Cloudinary Upload Widget
+    const uploadWidget = cloudinary.createUploadWidget({
+      cloudName: 'dwtiej5jn', // Your Cloudinary cloud name
+      uploadPreset: 'unsigned_preset', // Your unsigned upload preset
+      sources: ['local', 'url', 'camera'],
+      folder: 'videos',
+      resourceType: 'video',
+      clientAllowedFormats: ['mp4', 'mov', 'avi', 'mkv'],
+      maxFileSize: 500000000, // 500MB
+      // Generate a unique public_id with timestamp
+      publicId: function() {
+        return 'video_' + Date.now();
+      }
+    }, function (error, result) {
+      if (!error && result && result.event === "success") {
+        document.getElementById('uploadMsg').textContent = "File uploaded successfully!";
+        console.log("Upload result:", result.info);
+        // Add file to fileList
+        addFile(result.info);
+      } else if (error) {
+        document.getElementById('uploadMsg').textContent = "Error uploading file: " + error.message;
+      }
+    });
+
+    document.getElementById("uploadWidgetButton").addEventListener("click", function () {
+      uploadWidget.open();
+    }, false);
+
+    // Add file to the list and display it
+    function addFile(fileInfo) {
+      const uploadTime = Date.now();
+      const fileData = {
+        url: fileInfo.secure_url,
+        name: fileInfo.original_filename,
+        uploadTime: uploadTime
+      };
+      fileList.push(fileData);
+      displayFiles();
+      // Save updated fileList to localStorage
+      localStorage.setItem('fileList', JSON.stringify(fileList));
+    }
+
+    // Load files from localStorage
+    function loadFiles() {
+      const storedFiles = localStorage.getItem('fileList');
+      if (storedFiles) {
+        fileList = JSON.parse(storedFiles);
+        displayFiles();
+      }
+    }
+
+    // Display files
+    function displayFiles() {
+      const fileListContainer = document.getElementById('fileList');
+      fileListContainer.innerHTML = '';
+      const currentTime = Date.now();
+
+      fileList = fileList.filter(file => {
+        // Calculate time difference
+        const timeDiff = currentTime - file.uploadTime;
+        const hoursDiff = timeDiff / (1000 * 60 * 60);
+        // Only keep files less than 48 hours old
+        return hoursDiff < 48;
+      });
+
+      // Save updated fileList to localStorage
+      localStorage.setItem('fileList', JSON.stringify(fileList));
+
+      if (fileList.length === 0) {
+        fileListContainer.innerHTML = '<p>No available videos.</p>';
+        return;
+      }
+
+      fileList.forEach(file => {
+        const timeLeft = 48 * 60 * 60 * 1000 - (currentTime - file.uploadTime); // Time left in ms
+        const fileItem = document.createElement('div');
+        fileItem.className = 'file-item';
+        fileItem.innerHTML = `
+          <h3>${file.name}</h3>
+          <p>Time left: <span class="countdown" data-timeleft="${timeLeft}" data-uploadtime="${file.uploadTime}"></span></p>
+          <button onclick="downloadFile('${file.url}')">Download Video</button>
+        `;
+        fileListContainer.appendChild(fileItem);
+      });
+
+      // Start countdown timers
+      startCountdowns();
+    }
+
+    // Start countdown timers
+    function startCountdowns() {
+      const countdownElements = document.querySelectorAll('.countdown');
+      countdownElements.forEach(element => {
+        const timeLeft = parseInt(element.getAttribute('data-timeleft'));
+        updateCountdown(element, timeLeft);
+      });
+    }
+
+    // Update countdown
+    function updateCountdown(element, timeLeft) {
+      if (timeLeft <= 0) {
+        element.textContent = 'Expired';
+        const parentItem = element.closest('.file-item');
+        parentItem.remove(); // Remove the file item
+        // Update fileList in localStorage
+        const uploadTime = parseInt(element.getAttribute('data-uploadtime'));
+        fileList = fileList.filter(file => file.uploadTime !== uploadTime);
+        localStorage.setItem('fileList', JSON.stringify(fileList));
+        return;
+      }
+      const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+      element.textContent = `${hours}h ${minutes}m ${seconds}s`;
+      setTimeout(() => {
+        updateCountdown(element, timeLeft - 1000);
+      }, 1000);
+    }
+
+    // Download function
+    function downloadFile(fileUrl) {
+      window.open(fileUrl, '_blank');
+    }
+  </script>
+</body>
+</html>
