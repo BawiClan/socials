@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Secure Video Portal</title>
+  <!-- Bootstrap CSS for better styling -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
-    /* Styling */
+    /* Custom Styling */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(to right, #1f1c2c, #928dab);
       color: #fff;
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       min-height: 100vh;
     }
     #app {
@@ -22,8 +21,10 @@
       border-radius: 10px;
       text-align: center;
       width: 90%;
-      max-width: 500px;
+      max-width: 800px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      margin: auto;
+      margin-top: 50px;
     }
     h1 {
       margin-bottom: 20px;
@@ -70,6 +71,19 @@
     .countdown {
       color: #ff0;
     }
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+      #app {
+        padding: 20px;
+      }
+      h1 {
+        font-size: 1.5em;
+      }
+      input[type="password"], button {
+        padding: 10px;
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -82,7 +96,7 @@
     <div id="mainContent" class="hidden">
       <div id="uploadSection">
         <h2>Upload Video</h2>
-        <button id="uploadWidgetButton">Upload via Cloudinary</button>
+        <button id="uploadWidgetButton" class="btn btn-primary">Upload via Cloudinary</button>
         <p id="uploadMsg" class="message"></p>
       </div>
       <div id="downloadSection">
@@ -116,8 +130,8 @@
 
     // Cloudinary Upload Widget
     const uploadWidget = cloudinary.createUploadWidget({
-      cloudName: 'dwtiej5jn', // Your Cloudinary cloud name
-      uploadPreset: 'unsigned_preset', // Your unsigned upload preset
+      cloudName: 'dwtiej5jn', // Replace with your Cloudinary cloud name
+      uploadPreset: 'unsigned_preset', // Replace with your unsigned upload preset
       sources: ['local', 'url', 'camera'],
       folder: 'videos',
       resourceType: 'video',
@@ -194,7 +208,7 @@
         fileItem.innerHTML = `
           <h3>${file.name}</h3>
           <p>Time left: <span class="countdown" data-timeleft="${timeLeft}" data-uploadtime="${file.uploadTime}"></span></p>
-          <button onclick="downloadFile('${file.url}')">Download Video</button>
+          <button onclick="downloadFile('${file.url}', '${file.name}')">Download Video</button>
         `;
         fileListContainer.appendChild(fileItem);
       });
@@ -233,9 +247,24 @@
       }, 1000);
     }
 
-    // Download function
-    function downloadFile(fileUrl) {
-      window.open(fileUrl, '_blank');
+    // Download function compatible with iOS
+    function downloadFile(fileUrl, fileName) {
+      // Create a temporary link to trigger download
+      const a = document.createElement('a');
+      a.href = fileUrl;
+      a.target = '_blank';
+
+      // For iOS devices
+      if (navigator.userAgent.match(/(iPad|iPhone|iPod)/g)) {
+        // Open in a new tab, from where the user can save the video
+        window.open(fileUrl, '_blank');
+      } else {
+        // For other devices, use the download attribute
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
     }
   </script>
 </body>
