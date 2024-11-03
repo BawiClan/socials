@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Secure Video Portal</title>
-  <!-- Bootstrap CSS for better styling -->
+  <title>Video Portal</title>
+  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <!-- Font Awesome for icons -->
+  <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <!-- Custom Styles -->
   <style>
     /* Custom Styling */
     body {
@@ -18,24 +19,27 @@
       min-height: 100vh;
     }
     #app {
+      padding: 30px;
+      text-align: center;
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+    }
+    h1, h2 {
+      margin-bottom: 30px;
+      text-shadow: 2px 2px #000;
+    }
+    .pin-container, .upload-container, .gallery-container {
       background: rgba(0, 0, 0, 0.85);
       padding: 30px;
       border-radius: 10px;
-      text-align: center;
-      width: 90%;
-      max-width: 800px;
+      margin-bottom: 30px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      margin: auto;
-      margin-top: 50px;
-    }
-    h1 {
-      margin-bottom: 20px;
-      text-shadow: 2px 2px #000;
     }
     input[type="password"], button {
       padding: 15px;
       margin: 10px 0;
-      width: calc(100% - 30px);
+      width: 100%;
       border: none;
       border-radius: 5px;
       font-size: 16px;
@@ -55,37 +59,54 @@
       background: #21a1f1;
       box-shadow: 0 0 10px #21a1f1;
     }
-    .hidden {
-      display: none;
-    }
     .message {
       color: #f00;
       font-size: 0.9em;
     }
-    .file-item {
+    /* Gallery Styles */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .media-card {
       background: #1E2A38;
-      padding: 15px;
-      margin: 15px 0;
+      margin: 15px;
       border-radius: 10px;
-      text-align: left;
-      position: relative;
+      width: calc(25% - 30px);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
       overflow: hidden;
       transition: transform 0.3s, box-shadow 0.3s;
     }
-    .file-item:hover {
+    .media-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 0 15px rgba(33, 161, 241, 0.5);
     }
-    .file-item h3 {
-      margin: 0 0 10px 0;
-      font-size: 1.2em;
+    .media-card img {
+      width: 100%;
+      height: auto;
     }
-    .countdown {
+    .media-card-body {
+      padding: 15px;
+    }
+    .media-card-title {
+      font-size: 1.1em;
+      margin-bottom: 10px;
+      color: #fff;
+      text-align: center;
+    }
+    .media-card-text {
       color: #ffc107;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
     }
     .btn {
-      margin-right: 10px;
-      margin-top: 10px;
+      margin: 5px;
       transition: box-shadow 0.3s;
     }
     .btn:hover {
@@ -119,7 +140,20 @@
       margin-right: 5px;
     }
     /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .media-card {
+        width: calc(33.333% - 30px);
+      }
+    }
+    @media (max-width: 768px) {
+      .media-card {
+        width: calc(50% - 30px);
+      }
+    }
     @media (max-width: 576px) {
+      .media-card {
+        width: calc(100% - 30px);
+      }
       #app {
         padding: 20px;
       }
@@ -130,33 +164,42 @@
         padding: 10px;
         font-size: 14px;
       }
-      .file-item {
-        padding: 10px;
-      }
-      .file-item h3 {
+      .media-card-title {
         font-size: 1em;
       }
+    }
+    /* Hidden class */
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
   <div id="app">
-    <h1>Secure Video Portal</h1>
-    <p>Please enter the PIN to access the portal.</p>
-    <input type="password" id="pinInput" placeholder="Enter PIN" />
-    <button onclick="authenticate()">Submit</button>
-    <p id="errorMsg" class="message hidden">Invalid PIN. Please try again.</p>
+    <h1>Video Portal</h1>
+    <!-- PIN Entry Section -->
+    <div class="pin-container" id="pinContainer">
+      <h2>Please enter the PIN to access the portal.</h2>
+      <input type="password" id="pinInput" placeholder="Enter PIN" />
+      <button onclick="authenticate()">Submit</button>
+      <p id="errorMsg" class="message hidden">Invalid PIN. Please try again.</p>
+    </div>
+    <!-- Main Content -->
     <div id="mainContent" class="hidden">
-      <div id="uploadSection">
+      <!-- Upload Section -->
+      <div class="upload-container">
         <h2>Upload Video</h2>
         <button id="uploadWidgetButton" class="btn btn-primary">
           <i class="fas fa-cloud-upload-alt icon"></i>Upload via Cloudinary
         </button>
         <p id="uploadMsg" class="message"></p>
       </div>
-      <div id="downloadSection">
+      <!-- Gallery Section -->
+      <div class="gallery-container">
         <h2>Available Videos</h2>
-        <div id="fileList"></div>
+        <div class="gallery" id="fileList">
+          <!-- Media cards will be dynamically inserted here -->
+        </div>
       </div>
     </div>
   </div>
@@ -170,14 +213,20 @@
     // PIN Authentication
     const correctPin = "Beam93##";
     function authenticate() {
-      const pinInput = document.getElementById('pinInput').value;
+      const pinInput = document.getElementById('pinInput').value.trim();
       const errorMsg = document.getElementById('errorMsg');
       if (pinInput === correctPin) {
         errorMsg.classList.add('hidden');
         document.getElementById('mainContent').classList.remove('hidden');
+        document.getElementById('pinContainer').classList.add('hidden');
         document.getElementById('pinInput').value = '';
         loadFiles();
       } else {
+        if (pinInput === '') {
+          errorMsg.textContent = 'Please enter the PIN.';
+        } else {
+          errorMsg.textContent = 'Invalid PIN. Please try again.';
+        }
         errorMsg.classList.remove('hidden');
       }
     }
@@ -187,8 +236,8 @@
 
     // Cloudinary Upload Widget
     const uploadWidget = cloudinary.createUploadWidget({
-      cloudName: 'dwtiej5jn', 
-      uploadPreset: 'unsigned_preset', 
+      cloudName: 'dwtiej5jn', // Replace with your Cloudinary cloud name
+      uploadPreset: 'unsigned_preset', // Replace with your unsigned upload preset
       sources: ['local', 'url', 'camera'],
       folder: 'videos',
       resourceType: 'video',
@@ -261,24 +310,32 @@
 
       fileList.forEach(file => {
         const timeLeft = 48 * 60 * 60 * 1000 - (currentTime - file.uploadTime); // Time left in ms
-        const fileItem = document.createElement('div');
-        fileItem.className = 'file-item';
+        const mediaCard = document.createElement('div');
+        mediaCard.className = 'media-card';
+
         // Create direct download link using fl_attachment
         const downloadUrl = file.url.replace('/upload/', '/upload/fl_attachment/');
-        fileItem.innerHTML = `
-          <h3>${file.name}</h3>
-          <p>Time left: <span class="countdown" data-timeleft="${timeLeft}" data-uploadtime="${file.uploadTime}"></span></p>
-          <button class="btn btn-download" onclick="downloadFile('${downloadUrl}', '${file.name}')">
-            <i class="fas fa-download icon"></i>Download Video
-          </button>
-          <button class="btn btn-share" onclick="copyShareableLink('${downloadUrl}')">
-            <i class="fas fa-share icon"></i>Copy Shareable Link
-          </button>
-          <button class="btn btn-remove" onclick="removeVideo('${file.uploadTime}', this)">
-            <i class="fas fa-times icon"></i>Hide Video
-          </button>
+
+        mediaCard.innerHTML = `
+          <div class="media-card-body">
+            <h5 class="media-card-title">${file.name}</h5>
+            <p class="media-card-text">
+              Time left: <span class="countdown" data-timeleft="${timeLeft}" data-uploadtime="${file.uploadTime}"></span>
+            </p>
+            <div class="btn-group">
+              <button class="btn btn-download" onclick="downloadFile('${downloadUrl}', '${file.name}')">
+                <i class="fas fa-download icon"></i>Download Video
+              </button>
+              <button class="btn btn-share" onclick="copyShareableLink('${downloadUrl}')">
+                <i class="fas fa-share icon"></i>Copy Shareable Link
+              </button>
+              <button class="btn btn-remove" onclick="removeVideo('${file.uploadTime}', this)">
+                <i class="fas fa-times icon"></i>Hide Video
+              </button>
+            </div>
+          </div>
         `;
-        fileListContainer.appendChild(fileItem);
+        fileListContainer.appendChild(mediaCard);
       });
 
       // Start countdown timers
@@ -298,8 +355,8 @@
     function updateCountdown(element, timeLeft) {
       if (timeLeft <= 0) {
         element.textContent = 'Expired';
-        const parentItem = element.closest('.file-item');
-        parentItem.remove(); // Remove the file item
+        const parentItem = element.closest('.media-card');
+        parentItem.remove(); // Remove the media card
         // Update fileList in localStorage
         const uploadTime = parseInt(element.getAttribute('data-uploadtime'));
         fileList = fileList.filter(file => file.uploadTime !== uploadTime);
@@ -338,7 +395,7 @@
     function removeVideo(uploadTime, buttonElement) {
       if (confirm('Are you sure you want to hide this video from the list?')) {
         // Remove video from UI and update fileList
-        const parentItem = buttonElement.closest('.file-item');
+        const parentItem = buttonElement.closest('.media-card');
         parentItem.remove();
         fileList = fileList.filter(file => file.uploadTime != uploadTime);
         localStorage.setItem('fileList', JSON.stringify(fileList));
