@@ -22,6 +22,7 @@
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
+
     <!-- Inline CSS -->
     <style>
         /* Global Styles */
@@ -50,8 +51,8 @@
             text-decoration: none;
         }
 
-        /* Navigation Styles */
-        nav {
+       /* Navigation Styles */
+ nav {
             width: 100%;
             background-color: #1f1f1f;
             padding: 20px 40px;
@@ -86,11 +87,13 @@
         nav .nav-links {
             display: flex;
             list-style: none;
+            
         }
 
         nav .nav-links li {
             margin: 0 15px;
             position: relative;
+            top: 10px;
         }
 
         nav .nav-links a {
@@ -109,7 +112,7 @@
             height: 2px;
             background-color: #ff4d4d;
             left: 0;
-            bottom: -5px;
+            bottom: -10px;
             transition: width 0.3s;
         }
 
@@ -129,6 +132,7 @@
         nav .hamburger div {
             width: 25px;
             height: 3px;
+            border-radius: 3px;
             background-color: #ffffff;
             transition: all 0.3s ease;
         }
@@ -158,7 +162,140 @@
         .mobile-menu a:hover,
         .mobile-menu a.active {
             background-color: #333333;
+            color: #ff4d4d;
         }
+
+        #light-mode-btn-mobile
+        {
+            height: 30px;
+        }
+        #dark-mode-btn-mobile
+        {
+            height: 30px;
+        }
+
+        #light-mode-btn-mobile:hover,
+        #light-mode-btn-mobile.active {
+            background-color: #b3b3b3;
+        }
+
+        #dark-mode-btn-mobile:hover,
+        #dark-mode-btn-mobile.active {
+            background-color: #b3b3b3;
+        }
+         
+        .nav-buttons-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .nav-buttons-container .nav-button:hover {
+            color: #ffffff;
+        }
+
+        /* Hide the second button by default */
+        #dark-mode-btn {
+            position: inline-flex;
+            display: none;
+            margin-bottom: 10px;
+        }
+
+        #light-mode-btn {
+            position: inline-flex;
+            display: flex;
+            margin-bottom: 10px;
+            
+        }
+        .dark-bg {
+            background-color: #0d0d0d !important;
+        }
+
+        .dark-bg:hover {
+            background-color: #d3d3d3 !important;
+            color: #000000 !important;
+        }
+
+        .nav-button {
+            position: inline-flex;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px; /* Adjust padding for a button-like shape */
+            border-radius: 20px; /* Creates the rounded rectangle shape */
+            background-color: #f0f0f0; /* Light background for the button */
+            color: #333; /* Text color */
+            border: none; /* Removes the default button border */
+            cursor: pointer; /* Changes cursor to pointer on hover */
+            font-size: 16px; /* Adjust text size as needed */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+            margin-top: -5px;
+        }
+
+
+        /* Hover effect for both buttons */
+        .nav-button:hover {
+            background-color: #555; /* Hover background color */
+        }
+
+        /* Container for search bar */
+        .search-container {
+            display: flex;
+            justify-content: center; /* Centers the search bar */
+            margin: 20px 0;
+            border-radius:  20px 20px  20px 20px;
+        }
+
+        /* Search bar container */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            border-radius: 0 20px 20px 0;
+
+        }
+
+        /* Search bar input */
+        .search-bar {
+            width: 500px;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 20px 0 0 20px;
+            outline: none;
+            transition: box-shadow 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        /* Search button */
+        .search-button {
+            padding: 10px 15px;
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            border-radius: 0 20px 20px 0;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+            margin-bottom: 19.3px;
+        }
+
+        /* Icon in button */
+        .search-button i {
+            font-size: 16px;
+        }
+
+        .search-button:hover {
+            background-color: #e60000;
+        }
+
+
+
 
         /* Main Content Styles */
         .content-container {
@@ -251,6 +388,13 @@
             box-shadow: 0px 10px 20px rgba(255, 77, 77, 0.6);
             background: linear-gradient(135deg, rgba(255, 77, 77, 0.3), rgba(255, 77, 77, 0.2));
         }
+
+        .card-found {
+            transform: translateY(-5px);
+            box-shadow: 0px 10px 20px rgba(255, 77, 77, 0.6);
+            background: linear-gradient(135deg, rgba(255, 77, 77, 0.3), rgba(255, 77, 77, 0.2));
+         }
+
 
         .card h2 {
             font-size: 2em;
@@ -383,13 +527,26 @@
             <h1>Bawi Clan</h1>
         </div>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html"">Home</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="menus.html">Agario Mod Menus</a></li>
-            <li><a href="player-of-the-week.html">Player Of The Week</a></li>
-            <li><a href="level-up.html" class="active">Level Up</a></li>
+            <li><a href="player-of-the-week.html">Players Of The Week</a></li>
+            <li><a href="level-up.html"class="active">Level Up</a></li>
             <li><a href="skill-roles.html">Skill Roles</a></li>
             <li><a href="observer-bot.html">The Observer</a></li>
+           
+            <li>
+                <!-- Stacked buttons for Light/Dark mode -->
+                <div class="nav-buttons-container">
+                    <button id="light-mode-btn" onclick="setDark()" class="nav-button">
+                        <i class="fas fa-lightbulb"></i> Light Mode
+                    </button>
+
+                    <button id="dark-mode-btn" onclick="setLight()" class="nav-button">
+                        <i class="fas fa-moon"></i> Dark Mode
+                    </button>
+                </div>
+            </li>
         </ul>
         <div class="hamburger" onclick="toggleMobileMenu()">
             <div></div>
@@ -400,103 +557,115 @@
             <a href="index.html">Home</a>
             <a href="about.html">About Us</a>
             <a href="menus.html">Agario Mod Menus</a>
-            <a href="player-of-the-week.html">Player Of The Week</a>
-            <a href="level-up.html" class="active">Level Up</a>
+            <a href="player-of-the-week.html">Players Of The Week</a>
+            <a href="level-up.html class="active"">Level Up</a>
             <a href="skill-roles.html">Skill Roles</a>
             <a href="observer-bot.html">The Observer</a>
+            <button id="light-mode-btn-mobile" onclick="setDark()" class="nav-button-mobile">
+                <i class="fas fa-lightbulb"></i> Light Mode
+            </button>
+            <button id="dark-mode-btn-mobile" onclick="setLight()" class="nav-button-mobile">
+                <i class="fas fa-moon"></i> Dark Mode
+            </button>
         </div>
     </nav>
+
+   
 
     <!-- Main Content -->
     <div class="content-container">
 
 
-        <!-- Level Up Roles Cards -->
-        <div class="card">
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search role..." id="searchInput">
+            <button onclick="scrollToSection()" class="search-button"><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="card" id="citizen">
             <h2>Bawistan Citizen 🏛️</h2>
             <p class="bold">Text level: 100<br>Voice level: 50</p>
             <p>👑 Top role with all the privileges from previous roles.</p>
         </div>
-
-        <div class="card">
+        
+        <div class="card" id="legend">
             <h2>Bawi Legend 🦸‍♂️</h2>
             <p class="bold">Text level: 80<br>Voice level: 45</p>
             <p>🎖️ All perks from previous roles.</p>
         </div>
-
-        <div class="card">
+        
+        <div class="card" id="master">
             <h2>Bawi Master 🥋</h2>
             <p class="bold">Text level: 69<br>Voice level: 38</p>
             <p>🔄 Able to reset all the warns you've got from the Observer Bot.</p>
         </div>
 
-        <div class="card">
+        <div class="card" id="veteran">
             <h2>Bawi Veteran 🎖️</h2>
             <p class="bold">Text level: 60<br>Voice level: 35</p>
             <p>🧩 Able to add your own emoji to the server.</p>
         </div>
 
-        <div class="card">
+        <div class="card" id="elite">
             <h2>Bawi Elite 🌟</h2>
             <p class="bold">Text level: 50<br>Voice level: 30</p>
             <p>📨 Able to send messages in #media.</p>
         </div>
 
-        <div class="card">
+        <div class="card"  id="hero">
             <h2>Bawi Hero 🦸</h2>
             <p class="bold">Text level: 44<br>Voice level: 28</p>
             <p>📎 Able to attach files in general.<br>🌐 Able to use external emojis.</p>
         </div>
 
-        <div class="card">
+        <div class="card" id="champion">
             <h2>Bawi Champion 🏆</h2>
             <p class="bold">Text level: 40<br>Voice level: 25</p>
             <p>🎙️ Able to send voice messages in general.<br>📊 Able to make polls in general.</p>
         </div>
 
-        <div class="card">
+        <div class="card" id="warrior">
             <h2>Bawi Warrior 🗡️</h2>
             <p class="bold">Text level: 32<br>Voice level: 20</p>
             <p>🔍 Able to get tested for the skill roles expert and champ.</p>
         </div>
 
-        <div class="card">
+        <div class="card" id="ranger">
             <h2>Bawi Ranger 🏹</h2>
             <p class="bold">Text level: 27<br>Voice level: 17</p>
             <p>💼 Able to apply for staff.</p>
         </div>
 
-        <div class="card">
+        <div class="card" id="journeyman">
             <h2>Bawi Journeyman 🧭</h2>
             <p class="bold">Text level: 23<br>Voice level: 15</p>
             <p>📝 Being able to change your server name.</p>
         </div>
 
-        <div class="card">
+        <div class="card" id="adventurer">
             <h2>Bawi Adventurer 🧗</h2>
             <p class="bold">Text level: 19<br>Voice level: 12</p>
             <p>🎉 Able to apply for event manager role.</p>
         </div>
 
-        <div class="card">
+        <div class="card" id="explorer">
             <h2>Bawi Explorer 🧳</h2>
             <p class="bold">Text level: 15<br>Voice level: 8</p>
             <p>🛠️ Able to get the skill roles Pro, Elite & Master if you meet its requirements.</p>
         </div>
 
-        <div class="card">
+        <div class="card" id="rookie">
             <h2>Bawi Rookie 🏅</h2>
             <p class="bold">Text level: 10<br>Voice level: 4</p>
             <p>💻 Able to apply for code manager role.</p>
         </div>
 
-        <div class="card">
+        <div class="card" id="Apprentice">
             <h2>Bawi Apprentice 🛠️</h2>
             <p class="bold">Text level: 8<br>Voice level: 3</p>
             <p>📎 Able to attach files in #media.<br>📢 Able to report (open a support ticket).</p>
         </div>
 
-        <div class="card">
+        <div class="card" id="newbie">
             <h2>Bawi Newbie 🐣</h2>
             <p class="bold">Text level: 5<br>Voice level: 2</p>
             <p>🔗 Able to create server invite.</p>
@@ -531,6 +700,132 @@
             }
         });
     </script>
+
+<script>
+    //Light/Dark setter
+   function updateColors(isLightMode) {
+    if (isLightMode) {
+        
+        // Set light mode colors
+        document.querySelector('nav').style.backgroundColor = '#ffffff';
+        document.querySelector('body').style.background = '#ffffff';
+        document.querySelector('footer').style.backgroundColor = '#ffffff';
+        
+        
+        document.querySelectorAll('.hero p').forEach(function(Text) 
+        {Text.style.color = '#0d0d0d';});
+         document.querySelectorAll('nav .nav-links a').forEach(function(link) 
+        {link.style.color = '#0d0d0d';});
+        document.querySelectorAll('.socials a').forEach(function(icon) 
+        {icon.style.color = '#0d0d0d';});
+        document.querySelectorAll('.team-member').forEach(function(icon) 
+        {icon.style.backgroundColor = '#ffffff';});
+        document.querySelectorAll('.team-member h3').forEach(function(Text) 
+        {Text.style.color = '#0d0d0d';});
+        document.querySelectorAll('.footerText').forEach(function(Text) 
+        {Text.style.color = '#0d0d0d';});
+        document.querySelectorAll('.abtText').forEach(function(Text) 
+        {Text.style.color = '#0d0d0d';});
+        document.querySelectorAll('nav .hamburger div').forEach(function(icon) 
+        {icon.style.backgroundColor = '#0d0d0d';});
+        document.querySelectorAll('.card p').forEach(function(element) 
+        {element.style.color = 'rgba(31, 31, 31, 0.9)';}); 
+        
+
+    } 
+    else {
+
+        document.querySelector('footer').style.backgroundColor = '#0d0d0d';
+        document.querySelector('nav').style.backgroundColor = '#1f1f1f';
+        document.querySelector('body').style.background = '#121212';
+        document.querySelector('footer').style.backgroundColor = '#0d0d0d';
+        
+        document.querySelectorAll('.hero p').forEach(function(Text) 
+        {Text.style.color = '#ffff';});
+         document.querySelectorAll('nav .nav-links a').forEach(function(link) 
+        {link.style.color = '#ffff';});
+        document.querySelectorAll('.socials a').forEach(function(icon) 
+        {icon.style.color = '#fff';});
+        document.querySelectorAll('.team-member').forEach(function(icon) 
+        {icon.style.backgroundColor = '#0d0d0d';});
+        document.querySelectorAll('.team-member h3').forEach(function(Text) 
+        {Text.style.color = '#fff';});
+        document.querySelectorAll('.footerText').forEach(function(Text) 
+        {Text.style.color = '#fff';});
+        document.querySelectorAll('.abtText').forEach(function(Text) 
+        {Text.style.color = '#fff';});
+        document.querySelectorAll('nav .hamburger div').forEach(function(icon) 
+        {icon.style.backgroundColor = '#ffff';});
+        document.querySelectorAll('.card p').forEach(function(element) 
+        {element.style.color = '#ffffff';}); 
+
+    }
+}
+
+setDark();
+
+
+function setLight() {
+    updateColors(true);
+    // Toggle button visibility
+    document.getElementById('light-mode-btn').style.display = 'block';
+    document.getElementById('light-mode-btn').style.color = '#1a1a1a';
+    document.getElementById('dark-mode-btn').style.display = 'none';
+    document.getElementById('light-mode-btn-mobile').style.display = 'block';
+    document.getElementById('light-mode-btn-mobile').style.color = '#1a1a1a';
+    document.getElementById('dark-mode-btn-mobile').style.display = 'none';
+}
+
+function setDark() 
+{
+    updateColors(false);
+
+    document.getElementById('light-mode-btn').style.display = 'none';
+    document.getElementById('dark-mode-btn').style.display = 'block';
+    document.getElementById('light-mode-btn-mobile').style.display = 'none';
+    document.getElementById('dark-mode-btn-mobile').style.display = 'block';
+
+}
+
+function scrollToSection() {
+    // Get the search input, converted to lowercase for case-insensitive match
+    const query = document.getElementById("searchInput").value.toLowerCase();
+    console.log("Search query:", query); // Debugging output
+
+    // Find all elements with class "card" and look for an ID that includes the query
+    const elements = document.querySelectorAll(".card");
+    let targetElement = null;
+
+    for (let element of elements) {
+        const elementId = element.id.toLowerCase(); // Convert ID to lowercase
+        console.log("Checking element ID:", elementId); // Debugging output
+        
+        if (elementId.includes(query)) {
+            targetElement = element;
+            console.log("Match found:", elementId); // Debugging output
+            break; // Stop searching once a match is found
+        }
+    }
+
+    // If a matching element is found, scroll to it and add hover effect
+    if (targetElement) {
+        const offset = 100; // Adjust offset as needed
+        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: elementPosition, behavior: 'smooth' });
+
+        // Add the hover effect class
+        targetElement.classList.add('card-found');
+
+        setTimeout(() => {
+            targetElement.classList.remove('card-found');
+        }, 1000);
+    } else {
+        console.log("No matching element found."); // Debugging output
+        alert("Role not found");
+    }
+}
+
+</script>
 
 </body>
 

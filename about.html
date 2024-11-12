@@ -32,6 +32,7 @@
             overflow-x: hidden;
             position: relative;
             transition: background-color 0.3s, color 0.3s;
+            height:1200px;
         }
 
         a {
@@ -75,11 +76,13 @@
         nav .nav-links {
             display: flex;
             list-style: none;
+            
         }
 
         nav .nav-links li {
             margin: 0 15px;
             position: relative;
+            top: 10px;
         }
 
         nav .nav-links a {
@@ -98,7 +101,7 @@
             height: 2px;
             background-color: #ff4d4d;
             left: 0;
-            bottom: -5px;
+            bottom: -10px;
             transition: width 0.3s;
         }
 
@@ -118,6 +121,7 @@
         nav .hamburger div {
             width: 25px;
             height: 3px;
+            border-radius: 3px;
             background-color: #ffffff;
             transition: all 0.3s ease;
         }
@@ -144,8 +148,85 @@
             color: #ffffff;
         }
 
-        .mobile-menu a:hover {
+        .mobile-menu a:hover,
+        .mobile-menu a.active {
             background-color: #333333;
+            color: #ff4d4d;
+        }
+
+        #light-mode-btn-mobile
+        {
+            height: 30px;
+        }
+        #dark-mode-btn-mobile
+        {
+            height: 30px;
+        }
+
+        #light-mode-btn-mobile:hover,
+        #light-mode-btn-mobile.active {
+            background-color: #b3b3b3;
+        }
+
+        #dark-mode-btn-mobile:hover,
+        #dark-mode-btn-mobile.active {
+            background-color: #b3b3b3;
+        }
+         
+        .nav-buttons-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .nav-buttons-container .nav-button:hover {
+            color: #ffffff;
+        }
+
+        /* Hide the second button by default */
+        #dark-mode-btn {
+            position: inline-flex;
+            display: none;
+            margin-bottom: 10px;
+        }
+
+        #light-mode-btn {
+            position: inline-flex;
+            display: flex;
+            margin-bottom: 10px;
+            
+        }
+        .dark-bg {
+            background-color: #0d0d0d !important;
+        }
+
+        .dark-bg:hover {
+            background-color: #d3d3d3 !important;
+            color: #000000 !important;
+        }
+
+        .nav-button {
+            position: inline-flex;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px; /* Adjust padding for a button-like shape */
+            border-radius: 20px; /* Creates the rounded rectangle shape */
+            background-color: #f0f0f0; /* Light background for the button */
+            color: #333; /* Text color */
+            border: none; /* Removes the default button border */
+            cursor: pointer; /* Changes cursor to pointer on hover */
+            font-size: 16px; /* Adjust text size as needed */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+            margin-top: -5px;
+        }
+
+
+        /* Hover effect for both buttons */
+        .nav-button:hover {
+            background-color: #555; /* Hover background color */
         }
 
         /* Main Content Styles */
@@ -210,6 +291,9 @@
             transition: background-color 0.3s, box-shadow 0.3s;
         }
 
+
+       
+
         .intro h1 {
             font-size: 2.5em;
             color: #ff4d4d;
@@ -245,14 +329,30 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
-            animation: fadeInUp 1s ease forwards;
-            opacity: 0;
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 100;
         }
 
+
+/* Define the keyframes for the fade-in/fade-out cycle */
+@keyframes textFade {
+    0%, 100% { 
+        opacity: 0; /* Hidden at start and during the initial fade-in */
+    }
+    10%, 20% { 
+        opacity: 1; /* Fully visible for a longer period */
+    }
+    20%, 25% { 
+        opacity: 0; /* Gradual fade-out towards the end */
+    }
+}
         .team-member {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            position: absolute;
+            top: calc(min(20%, 100px)); /* Adjust as needed to control vertical positioning */
+            left: calc(max(60%, 300px));
+            transform: translateX(-50%); /* Center offset */
             background: rgba(31, 31, 31, 0.9);
             border-radius: 15px;
             padding: 20px;
@@ -260,13 +360,10 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
             width: 150px;
-            position: relative;
+            height: 250px;
             overflow: hidden;
-        }
-
-        .team-member:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 10px 25px rgba(255, 77, 77, 0.6);
+            opacity: 0; /* Initial opacity set to 0 */
+            animation: fadeCycle 60s infinite; /* Adjusted animation duration */
         }
 
         .team-member img {
@@ -296,6 +393,39 @@
             margin-top: 5px;
             font-weight: 500;
         }
+
+        /* Delays for each team member */
+        .team-member:nth-child(1) {
+            position: relative;
+            left: -3.3%;
+            top: 50px;
+            opacity: 1;
+            animation: none; /*janos will always be visible */
+          
+             }
+            .team-member:nth-child(2) { animation-delay: 0s; }
+            .team-member:nth-child(3) { animation-delay: 6s; }
+            .team-member:nth-child(4) { animation-delay: 12s; }
+            .team-member:nth-child(5) { animation-delay: 18s; }
+            .team-member:nth-child(6) { animation-delay: 24s; }
+            .team-member:nth-child(7) { animation-delay: 30s; }
+            .team-member:nth-child(8) { animation-delay: 36s; }
+            .team-member:nth-child(9) { animation-delay: 42s; }
+            .team-member:nth-child(10) { animation-delay: 48s; }
+            .team-member:nth-child(11) { animation-delay: 54s; }
+
+
+            @keyframes fadeCycle {
+    0%, 100% { 
+        opacity: 0; /* Hidden at start, during most of the animation, and at the end */
+    }
+    8%, 11% {
+        opacity: 1; /* Fully visible for a brief period */
+    }
+    11%, 15% {
+        opacity: 0; /* Gradual fade-out */
+    }
+}
 
         /* Footer Styles */
         footer {
@@ -427,13 +557,25 @@
             <h1>Bawi Clan</h1>
         </div>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html" class="active">About Us</a></li>
-            <li><a href="bawi-tks.html">Agario Mod Menus</a></li>
-            <li><a href="player-of-the-week.html">Players of the Week</a></li>
+            <li><a href="index.html"">Home</a></li>
+            <li><a href="about.html"class="active">About Us</a></li>
+            <li><a href="menus.html">Agario Mod Menus</a></li>
+            <li><a href="player-of-the-week.html">Players Of The Week</a></li>
             <li><a href="level-up.html">Level Up</a></li>
-            <li><a href="skill-roles.html">Skill Roles</a></li> <!-- Added Skill Roles here -->
-            <lil><a href="observer-bot.html">The Observer</a></lil>
+            <li><a href="skill-roles.html">Skill Roles</a></li>
+            <li><a href="observer-bot.html">The Observer</a></li>
+            <li>
+                <!-- Stacked buttons for Light/Dark mode -->
+                <div class="nav-buttons-container">
+                    <button id="light-mode-btn" onclick="setDark()" class="nav-button">
+                        <i class="fas fa-lightbulb"></i> Light Mode
+                    </button>
+
+                    <button id="dark-mode-btn" onclick="setLight()" class="nav-button">
+                        <i class="fas fa-moon"></i> Dark Mode
+                    </button>
+                </div>
+            </li>
         </ul>
         <div class="hamburger" onclick="toggleMobileMenu()">
             <div></div>
@@ -442,11 +584,18 @@
         </div>
         <div class="mobile-menu" id="mobileMenu">
             <a href="index.html">Home</a>
-            <a href="about.html">About Us</a>
-            <a href="bawi-tks.html">Agario Mod Menus</a>
-            <a href="player-of-the-week.html">Players of the Week</a>
+            <a href="about.html" class="active">About Us</a>
+            <a href="menus.html">Agario Mod Menus </a>
+            <a href="player-of-the-week.html">Players Of The Week</a>
             <a href="level-up.html">Level Up</a>
             <a href="skill-roles.html">Skill Roles</a>
+            <a href="observer-bot.html">The Observer</a>
+            <button id="light-mode-btn-mobile" onclick="setDark()" class="nav-button-mobile">
+                <i class="fas fa-lightbulb"></i> Light Mode
+            </button>
+            <button id="dark-mode-btn-mobile" onclick="setLight()" class="nav-button-mobile">
+                <i class="fas fa-moon"></i> Dark Mode
+            </button>
         </div>
     </nav>
 
@@ -456,7 +605,7 @@
             <img src="https://cdn.discordapp.com/icons/1051484753552998460/a_2faf88a4c540b39d30151bc23c6bbbb8.gif?size=4096" alt="Bawi Logo">
             <h1>族ılBawi↝ | | | ᯓBawi❥</h1>
         </div>
-        <p>We are an international Agar.io Clan playing on EU-Servers (EU Central 1, EU West 2 & EU West 3) mainly. We host plenty of Giveaways & Events for our active members in our Discord server. Make sure you become a part of us as soon as possible.</p>
+        <p class= "abtText">We are an international Agar.io Clan playing on EU-Servers (EU Central 1, EU West 2 & EU West 3) mainly. We host plenty of Giveaways & Events for our active members in our Discord server. Make sure you become a part of us as soon as possible.</p>
 
         <!-- Team Section -->
         <div class="team-section">
@@ -526,7 +675,7 @@
             <a href="https://www.instagram.com/bawi.io/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="https://www.tiktok.com/@bawi.io_agario" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
         </div>
-        <p>&copy; 2024 Bawi Clan. All rights reserved.</p>
+        <p class="footerText">&copy; 2024 Bawi Clan. All rights reserved.</p>
     </footer>
 
     <!-- Inline JavaScript -->
@@ -545,8 +694,102 @@
                 mobileMenu.classList.remove('show');
             }
         });
+        
     </script>
 
+<script>
+    //Light/Dark setter
+   function updateColors(isLightMode) {
+    if (isLightMode) {
+        
+        // Set light mode colors
+        document.querySelector('nav').style.backgroundColor = '#ffffff';
+        document.querySelector('body').style.background = '#ffffff';
+        document.querySelector('footer').style.backgroundColor = '#ffffff';
+        document.querySelector('.intro').style.backgroundColor = '#ffffff';
+        document.querySelector('.nav-button').classList.add('dark-bg');
+
+        
+        
+        document.querySelectorAll('.hero p').forEach(function(Text) 
+        {Text.style.color = '#0d0d0d';});
+         document.querySelectorAll('nav .nav-links a').forEach(function(link) 
+        {link.style.color = '#0d0d0d';});
+        document.querySelectorAll('.socials a').forEach(function(icon) 
+        {icon.style.color = '#0d0d0d';});
+        document.querySelectorAll('.team-member').forEach(function(icon) 
+        {icon.style.backgroundColor = '#ffffff';});
+        document.querySelectorAll('.team-member h3').forEach(function(Text) 
+        {Text.style.color = '#0d0d0d';});
+        document.querySelectorAll('.footerText').forEach(function(Text) 
+        {Text.style.color = '#0d0d0d';});
+        document.querySelectorAll('.abtText').forEach(function(Text) 
+        {Text.style.color = '#0d0d0d';});
+        document.querySelectorAll('nav .hamburger div').forEach(function(icon) 
+        {icon.style.backgroundColor = '#0d0d0d';});
+
+
+
+        
+
+    } 
+    
+    else {
+
+        document.querySelector('footer').style.backgroundColor = '#0d0d0d';
+        document.querySelector('nav').style.backgroundColor = '#1f1f1f';
+        document.querySelector('body').style.background = '#121212';
+        document.querySelector('footer').style.backgroundColor = '#0d0d0d';
+        
+
+        
+        document.querySelectorAll('.hero p').forEach(function(Text) 
+        {Text.style.color = '#ffff';});
+         document.querySelectorAll('nav .nav-links a').forEach(function(link) 
+        {link.style.color = '#ffff';});
+        document.querySelectorAll('.socials a').forEach(function(icon) 
+        {icon.style.color = '#fff';});
+        document.querySelectorAll('.team-member').forEach(function(icon) 
+        {icon.style.backgroundColor = '#0d0d0d';});
+        document.querySelectorAll('.team-member h3').forEach(function(Text) 
+        {Text.style.color = '#fff';});
+        document.querySelectorAll('.footerText').forEach(function(Text) 
+        {Text.style.color = '#fff';});
+        document.querySelector('.intro').style.backgroundColor = 'rgba(31, 31, 31, 0.9)';
+        document.querySelectorAll('.abtText').forEach(function(Text) 
+        {Text.style.color = '#fff';});
+        document.querySelectorAll('nav .hamburger div').forEach(function(icon) 
+        {icon.style.backgroundColor = '#ffff';});
+
+    }
+}
+
+setDark();
+
+
+function setLight() {
+updateColors(true);
+// Toggle button visibility
+document.getElementById('light-mode-btn').style.display = 'block';
+document.getElementById('light-mode-btn').style.color = '#ffff';
+document.getElementById('dark-mode-btn').style.display = 'none';
+document.getElementById('light-mode-btn-mobile').style.display = 'block';
+document.getElementById('light-mode-btn-mobile').style.color = '#0d0d0d';
+document.getElementById('dark-mode-btn-mobile').style.display = 'none';
+}
+
+function setDark() 
+{
+updateColors(false);
+
+document.getElementById('light-mode-btn').style.display = 'none';
+document.getElementById('dark-mode-btn').style.display = 'block';
+document.getElementById('light-mode-btn-mobile').style.display = 'none';
+document.getElementById('dark-mode-btn-mobile').style.display = 'block';
+
+}
+
+</script>
 </body>
 
 </html>
